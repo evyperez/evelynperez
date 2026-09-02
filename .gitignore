@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Hugo build output and local cache
+public/
+resources/
+.hugo_build.lock
+
+# Generated stylesheets
+static/css/main.css
+
+# Test output and logs
+testResults/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
