@@ -49,6 +49,8 @@
 
 
     <div class="shapes shapes--forest">
+      {{- /* Each tree row is its own SVG, so the browser draws the paper texture once
+           and the breeze only moves the layer instead of repainting every frame. */}}
       <svg class="forest-scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="forest-sky" x1="0" y1="0" x2="0" y2="1">
@@ -59,25 +61,25 @@
         <rect width="1600" height="900" fill="url(#forest-sky)"/>
         <path class="forest-scene__ridge--1" d="M-80 336 C18 304 110 286 202 294 C286 302 346 266 412 248 C486 228 582 244 666 276 C742 304 812 272 890 246 C964 220 1032 228 1102 210 C1182 188 1262 162 1344 170 C1424 178 1500 214 1582 206 C1658 198 1712 150 1760 126 L1760 920 L-80 920 Z"/>
         <path class="forest-scene__ridge--2" d="M-60 484 C44 444 152 430 248 438 C336 446 416 398 506 386 C600 374 696 418 792 430 C888 442 970 404 1058 390 C1150 376 1246 398 1340 408 C1442 420 1542 410 1660 370 L1660 920 L-60 920 Z"/>
-        <g class="forest-scene__trees forest-scene__trees--back">
-          <use class="pine pine--dark" href="#pine" transform="translate(90 700) scale(0.8)"/>
-          <use class="pine" href="#pine" transform="translate(300 675) scale(0.95)"/>
-          <use class="pine pine--light" href="#pine" transform="translate(520 710) scale(0.7)"/>
-          <use class="pine" href="#pine" transform="translate(760 665) scale(1.0)"/>
-          <use class="pine pine--dark" href="#pine" transform="translate(1000 690) scale(0.85)"/>
-          <use class="pine" href="#pine" transform="translate(1250 675) scale(0.95)"/>
-          <use class="pine pine--dark" href="#pine" transform="translate(1480 706) scale(0.75)"/>
-        </g>
-        <g class="forest-scene__trees forest-scene__trees--front">
-          <use class="pine" href="#pine" transform="translate(30 700) scale(1.25)"/>
-          <use class="pine pine--dark" href="#pine" transform="translate(215 650) scale(1.5)"/>
-          <use class="pine pine--light" href="#pine" transform="translate(430 715) scale(1.1)"/>
-          <use class="pine pine--dark" href="#pine" transform="translate(650 660) scale(1.45)"/>
-          <use class="pine pine--pale" href="#pine" transform="translate(895 700) scale(1.2)"/>
-          <use class="pine pine--dark" href="#pine" transform="translate(1150 640) scale(1.55)"/>
-          <use class="pine pine--light" href="#pine" transform="translate(1380 690) scale(1.3)"/>
-          <use class="pine" href="#pine" transform="translate(1565 715) scale(1.15)"/>
-        </g>
+      </svg>
+      <svg class="forest-scene forest-scene__trees forest-scene__trees--back" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <use class="pine pine--dark" href="#pine" transform="translate(90 700) scale(0.8)"/>
+        <use class="pine" href="#pine" transform="translate(300 675) scale(0.95)"/>
+        <use class="pine pine--light" href="#pine" transform="translate(520 710) scale(0.7)"/>
+        <use class="pine" href="#pine" transform="translate(760 665) scale(1.0)"/>
+        <use class="pine pine--dark" href="#pine" transform="translate(1000 690) scale(0.85)"/>
+        <use class="pine" href="#pine" transform="translate(1250 675) scale(0.95)"/>
+        <use class="pine pine--dark" href="#pine" transform="translate(1480 706) scale(0.75)"/>
+      </svg>
+      <svg class="forest-scene forest-scene__trees forest-scene__trees--front" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <use class="pine" href="#pine" transform="translate(30 700) scale(1.25)"/>
+        <use class="pine pine--dark" href="#pine" transform="translate(215 650) scale(1.5)"/>
+        <use class="pine pine--light" href="#pine" transform="translate(430 715) scale(1.1)"/>
+        <use class="pine pine--dark" href="#pine" transform="translate(650 660) scale(1.45)"/>
+        <use class="pine pine--pale" href="#pine" transform="translate(895 700) scale(1.2)"/>
+        <use class="pine pine--dark" href="#pine" transform="translate(1150 640) scale(1.55)"/>
+        <use class="pine pine--light" href="#pine" transform="translate(1380 690) scale(1.3)"/>
+        <use class="pine" href="#pine" transform="translate(1565 715) scale(1.15)"/>
       </svg>
     </div>
 

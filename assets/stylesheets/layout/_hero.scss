@@ -270,9 +270,10 @@
 
 .forest-scene { z-index: 0; }
 
+// Tree rows are separate SVG layers: the breeze moves the whole layer, so the
+// paper texture is drawn once instead of on every frame (Safari was stuttering).
 .forest-scene__trees {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
+  will-change: transform;
 }
 
 .forest-scene__trees--front { animation: tree-breeze-front 16s ease-in-out infinite; }
