@@ -16,7 +16,7 @@ Os envios do formulário são armazenados pela Netlify. Para mais informações,
 
 ## Retenção e escolhas
 
-As informações de contato são mantidas apenas pelo tempo necessário para responder a uma mensagem ou continuar uma conversa iniciada por você. Você pode pedir acesso, correção ou exclusão das informações enviadas pelo email [hello@evelyn-perez.com](mailto:hello@evelyn-perez.com).
+As informações de contato são mantidas apenas pelo tempo necessário para responder a uma mensagem ou continuar uma conversa iniciada por você. Você pode pedir acesso, correção ou exclusão das informações enviadas pelo email [evelyn@evelyn-perez.com](mailto:evelyn@evelyn-perez.com).
 
 ## Links externos
 

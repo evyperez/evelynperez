@@ -16,7 +16,7 @@ Form submissions are stored by Netlify. For more information, see [Netlify's Pri
 
 ## Retention and your choices
 
-Contact information is kept only for as long as needed to respond to a message or continue a conversation you started. You can ask to access, correct, or delete information you submitted by emailing [hello@evelyn-perez.com](mailto:hello@evelyn-perez.com).
+Contact information is kept only for as long as needed to respond to a message or continue a conversation you started. You can ask to access, correct, or delete information you submitted by emailing [evelyn@evelyn-perez.com](mailto:evelyn@evelyn-perez.com).
 
 ## External links
 

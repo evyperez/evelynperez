@@ -73,7 +73,7 @@ params:
   # Default share image (1200×630), used when a page has no image of its own.
   # Each language sets its own version in its params above.
   image: '/images/og-default.jpg'
-  email: 'hello@evelyn-perez.com'
+  email: 'evelyn@evelyn-perez.com'
   calendar: 'https://cal.com/evelyn-perez'
   location: 'Lisbon, Portugal'
   social:
