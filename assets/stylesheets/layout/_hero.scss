@@ -654,24 +654,16 @@
 }
 
 @include ep.below('md') {
+  // Phones: the scene is anchored to the bottom and is taller than the space
+  // kept free below the text. Its top is open sky, so it can sit behind the
+  // text, while the foreground stays clear of the buttons.
+  // The theme's sky fills the whole hero, so there is no band above the scene.
+  $art-height: clamp(28rem, 135vw, 40rem);
+  $art-space: clamp(17rem, 78vw, 26rem);
+
   .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
     min-height: 0;
-    gap: ep.space('32');
-    padding-block: ep.space('96') 0;
-  }
-
-  .hero > .container {
-    grid-row: 1;
-    width: 100%;
-  }
-
-  // Keep the scene below the content regardless of text length or language.
-  .hero__shapes {
-    position: relative;
-    grid-row: 2;
-    height: clamp(#{ep.space('176')}, 64vw, #{ep.space('168') * 2});
+    padding-block: ep.space('96') $art-space;
   }
 
   .hero__content {
@@ -697,27 +689,25 @@
     }
   }
 
-  .forest-scene,
-  .flowers-scene {
-    inset: 0;
-    width: 100%;
-    height: 100%;
+  // Same color as the top of the forest scene, so the sky continues above it.
+  .shapes--forest {
+    background: ep.scene('forest', 'sky-top');
   }
 
-  .tejo-scene {
+  .forest-scene,
+  .flowers-scene,
+  .tejo-scene,
+  .sr-scene {
+    inset: auto 0 0;
     width: 100%;
-    height: 100%;
-    right: 0;
-    left: auto;
+    height: $art-height;
+    opacity: 1;
     transform: none;
   }
 
-  .sr-scene {
-    height: 100%;
-  }
-
   .sr-celestial {
-    top: ep.space('24');
+    top: auto;
+    bottom: calc(#{$art-space} - #{ep.space('64')});
     right: ep.space('32');
     width: ep.space('64');
   }
