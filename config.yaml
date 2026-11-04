@@ -40,6 +40,7 @@ languages:
     params:
       description: "Engenheira frontend e designer em Lisboa. Design systems, bibliotecas de componentes e interfaces acessíveis em Angular, React e web components."
       shortName: 'PT'
+      image: '/images/og-default-pt-pt.jpg'
       flag: '🇵🇹'
   pt-br:
     contentDir: content/pt-br
@@ -50,6 +51,7 @@ languages:
     params:
       description: "Engenheira frontend e designer em Lisboa. Design systems, bibliotecas de componentes e interfaces acessíveis em Angular, React e web components."
       shortName: 'BR'
+      image: '/images/og-default-pt-br.jpg'
       flag: '🇧🇷'
   es:
     contentDir: content/es
@@ -60,6 +62,7 @@ languages:
     params:
       description: "Ingeniera frontend y diseñadora en Lisboa. Design systems, librerías de componentes e interfaces accesibles en Angular, React y web components."
       shortName: 'ES'
+      image: '/images/og-default-es.jpg'
       flag: '🇪🇸'
 
 params:
@@ -68,6 +71,7 @@ params:
   cloudflareAnalyticsToken: '4d028d014b01435aaf3469f4ab9ee6f2'
   description: "Frontend engineer and designer in Lisbon. Design systems, component libraries and accessible interfaces in Angular, React and web components."
   # Default share image (1200×630), used when a page has no image of its own.
+  # Each language sets its own version in its params above.
   image: '/images/og-default.jpg'
   email: 'hello@evelyn-perez.com'
   calendar: 'https://cal.com/evelyn-perez'
