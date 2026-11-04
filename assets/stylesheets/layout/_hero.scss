@@ -589,15 +589,16 @@
     max-width: 34rem;
   }
 
+  // Side by side when both fit, so the scene gets more of the first screen.
+  // On the narrowest phones they wrap and stack at full width.
   .hero__actions {
-    flex-direction: column;
     align-items: stretch;
     width: 100%;
   }
 
   .hero__actions .btn {
+    flex: 1 1 9rem;
     justify-content: center;
-    width: 100%;
   }
 
   .forest-scene,
@@ -635,28 +636,44 @@
 
 }
 
-@include ep.below('md') {
-  // Phones: each scene is anchored to the bottom and drawn at about 80% of its
-  // desktop size. Its top is open sky, so it can sit behind the text, and the
-  // hero keeps $art-space free below the buttons for the foreground.
-  // The theme's sky fills the whole hero, so there is no band above the scene.
-  $art-space: (
-    'forest': clamp(16rem, 70vw, 24rem),
-    'tejo': clamp(17rem, 76vw, 26rem),
-    'lighthouse': clamp(23rem, 108vw, 33rem),
-    'flowers': clamp(21rem, 98vw, 30rem),
-  );
+// Phones: each scene is anchored to the bottom and its top is open sky, so it
+// can sit behind the text. The hero keeps --art-space free below the buttons
+// for the foreground, and every scene is sized from that space.
+// The space follows the width, but never makes the hero much taller than the
+// screen (100svh minus about the height of the text), so short phones like
+// the iPhone SE still show the scene on the first screen.
+// The theme's sky fills the whole hero, so there is no band above the scene.
+//   space: free space on a tall phone, as a share of the width
+//   max:   largest free space
+//   ratio: scene height (or width, for Tejo) divided by the free space
+$phone-scenes: (
+  'forest': (space: 70vw, max: 24rem, ratio: 2.47),
+  'tejo': (space: 76vw, max: 26rem, ratio: 2.34),
+  'lighthouse': (space: 108vw, max: 33rem, ratio: 1.76),
+  'flowers': (space: 98vw, max: 30rem, ratio: 1.65),
+);
 
+@function art-space($scene) {
+  $values: map.get($phone-scenes, $scene);
+
+  @return clamp(11rem, min(#{map.get($values, 'space')}, 100svh - 30rem), #{map.get($values, 'max')});
+}
+
+@function art-size($scene) {
+  @return calc(var(--art-space) * #{map.get($phone-scenes, $scene, 'ratio')});
+}
+
+@include ep.below('md') {
   .hero {
-    --art-space: #{map.get($art-space, 'forest')};
+    --art-space: #{art-space('forest')};
 
     min-height: 0;
-    padding-block: ep.space('96') var(--art-space);
+    padding-block: ep.space('80') var(--art-space);
   }
 
-  @each $theme, $space in $art-space {
-    [data-theme="#{$theme}"] .hero {
-      --art-space: #{$space};
+  @each $scene, $values in $phone-scenes {
+    [data-theme="#{$scene}"] .hero {
+      --art-space: #{art-space($scene)};
     }
   }
 
@@ -697,16 +714,16 @@
     transform: none;
   }
 
-  .forest-scene  { height: clamp(40rem, 173vw, 52rem); }
-  .flowers-scene { height: clamp(40rem, 180vw, 52rem); }
-  .sr-scene      { height: clamp(42rem, 190vw, 54rem); }
+  .forest-scene  { height: art-size('forest'); }
+  .flowers-scene { height: art-size('flowers'); }
+  .sr-scene      { height: art-size('lighthouse'); }
 
   // The Tejo scene keeps its proportions ("meet"), so it grows by width.
   // Shifted left so the statue and the start of the bridge stay in view.
   .tejo-scene {
     right: auto;
-    left: -18vw;
-    width: clamp(38rem, 178vw, 52rem);
+    left: calc(var(--art-space) * -0.24);
+    width: art-size('tejo');
     opacity: 1;
     transform: none;
   }
