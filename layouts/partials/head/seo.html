@@ -61,7 +61,11 @@
 {{- end }}
 {{- with $imageURL }}
 <meta property="og:image" content="{{ . }}">
-<meta property="og:image:alt" content="{{ $.Title }}">
+{{- if not $.Params.image }}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{{- end }}
+<meta property="og:image:alt" content="{{ if $.IsHome }}{{ site.Title }}{{ else }}{{ $.Title }}{{ end }}">
 {{- end }}
 {{- if $isBlog }}
 <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
