@@ -67,8 +67,8 @@ params:
   # Cloudflare Web Analytics site token (cookieless). Empty turns it off.
   cloudflareAnalyticsToken: '4d028d014b01435aaf3469f4ab9ee6f2'
   description: "Frontend engineer and designer in Lisbon. Design systems, component libraries and accessible interfaces in Angular, React and web components."
-  # Default share image (1200×630). Put the file in static/images/ and uncomment:
-  # image: '/images/og-default.jpg'
+  # Default share image (1200×630), used when a page has no image of its own.
+  image: '/images/og-default.jpg'
   email: 'hello@evelyn-perez.com'
   calendar: 'https://cal.com/evelyn-perez'
   location: 'Lisbon, Portugal'
