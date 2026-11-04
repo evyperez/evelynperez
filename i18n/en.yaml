@@ -121,7 +121,7 @@
   translation: "Something went wrong. Please try again or email me directly."
 
 - id: footerNoCookies
-  translation: "We don’t use cookies."
+  translation: "I don’t use cookies."
 
 - id: footerPrivacy
   translation: Privacy
