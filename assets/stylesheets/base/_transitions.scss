@@ -1,0 +1,17 @@
+body, body * {
+  transition:
+    background-color 0.35s ease,
+    border-color     0.35s ease,
+    color            0.2s ease;
+}
+
+.sky-cloud,
+.wave-path,
+.btn,
+.carousel__arrow,
+.sr-sun,
+.sr-moon-disk,
+.star,
+.sr-stars {
+  transition: none;
+}

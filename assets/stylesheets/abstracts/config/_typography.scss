@@ -1,0 +1,45 @@
+/// Where the self-hosted font files live (see base/_fonts.scss).
+$fonts-path: '/fonts';
+
+/// Font families → `--ep-font-<name>`.
+$font-families: (
+  'display': ('Gloock', Georgia, serif),
+  'body': ('Work Sans', system-ui, sans-serif),
+  'mono': (ui-monospace, 'SFMono-Regular', 'Cascadia Mono', 'Roboto Mono', Menlo, monospace),
+);
+
+/// Font weights → `ep.weight('<name>')`.
+$font-weights: (
+  'regular': 400,
+  'medium': 500,
+  'semi-bold': 600,
+  'bold': 700,
+);
+
+/// Modular scale (Major Second) → `ep.step(<n>)`.
+/// step(0) is the base; each step multiplies by the ratio.
+/// -3: 11.2px · -2: 12.6 · -1: 14.2 · 0: 16 · 1: 18 · 2: 20.3 · 3: 22.8 · 5: 28.8 · 7: 36.5 · 9: 46.2 · 13: 73.9
+$modularscale: (
+  'base': 1rem,
+  'ratio': 1.125,
+);
+
+/// Title sizes (display font) → `@include ep.title('<size>')`.
+/// Fluid between two scale steps: `clamp(step(min), fluid, step(max))`.
+$title-sizes: (
+  'display': (min: 9, fluid: 8vw, max: 13, line-height: 1.05, letter-spacing: -0.03em), // hero greeting
+  '3xl': (min: 7, fluid: 6vw, max: 12, line-height: 1.05, letter-spacing: -0.02em), // page titles
+  '2xl': (min: 6, fluid: 5vw, max: 9, line-height: 1.1, letter-spacing: -0.02em), // section titles
+  'xl': (min: 5, fluid: 4vw, max: 7, line-height: 1.15, letter-spacing: -0.02em),
+  'l': (min: 3, fluid: 3vw, max: 5, line-height: 1.25, letter-spacing: -0.01em),
+  'm': (min: 2, fluid: 2.5vw, max: 3, line-height: 1.25, letter-spacing: 0),
+);
+
+/// Line heights → `ep.leading('<name>')`.
+$leadings: (
+  'none': 1,
+  'tight': 1.1,
+  'snug': 1.25,
+  'normal': 1.55,
+  'relaxed': 1.7,
+);

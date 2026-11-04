@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div class="footer__bottom footer__bottom--legal container">
+    <p class="footer__copy">© {{ now.Year }} {{ .Site.Params.author }} · {{ i18n "footerNoCookies" }}</p>
+    <nav class="footer__links" aria-label="{{ i18n "footerSocialAria" }}">
+      <a href="{{ .Site.Params.social.github }}" target="_blank" rel="noopener">GitHub</a>
+      <a href="{{ .Site.Params.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      <a href='{{ "privacy" | relLangURL }}'>{{ i18n "footerPrivacy" }}</a>
+    </nav>
+  </div>
+</footer>

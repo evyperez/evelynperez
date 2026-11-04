@@ -1,0 +1,35 @@
+@use 'forest';
+@use 'tejo';
+@use 'lighthouse';
+@use 'flowers';
+
+/// # Palettes
+///
+/// Each palette is a theme: the same colors (`background`, `text`, `primary`…)
+/// with different values. Switching theme switches the values, not the names.
+///
+/// `forest` is the default and defines every color; the others only declare what changes.
+///
+/// New palette: create `_<name>.scss`, add it here and to the `THEMES` array
+/// in `assets/scripts/main.js`.
+$default-palette: 'forest';
+
+$palettes: (
+  'forest': forest.$palette,
+  'tejo': tejo.$palette,
+  'lighthouse': lighthouse.$palette,
+  'flowers': flowers.$palette,
+);
+
+/// # Uses
+///
+/// Use names that point to a palette color. Shared by every theme.
+$uses: (
+  'button': 'primary',
+  'button-hover': 'secondary',
+  'button-text': 'background',
+  'text-on-primary': 'background',
+  'focus': 'secondary',
+  'divider': 'background-alt',
+  'border-strong': 'text-muted',
+);

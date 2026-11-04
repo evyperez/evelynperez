@@ -1,0 +1,36 @@
+@use '../abstracts' as ep;
+
+// Light: --ep-background-alt bg + --ep-heading text; both flip in dark mode via tokens.
+
+.site-footer {
+  background: ep.palette('background-alt');
+  color: ep.palette('heading');
+  padding-block: ep.space('24');
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: ep.space('16');
+  flex-wrap: wrap;
+}
+
+.footer__copy {
+  font-size: ep.step(-2);
+  color: ep.palette('text-muted');
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: ep.space('16');
+
+  a {
+    color: ep.palette('text-muted');
+    font-size: ep.step(-2);
+    text-underline-offset: 0.2em;
+
+    &:hover { color: ep.palette('primary'); }
+  }
+}

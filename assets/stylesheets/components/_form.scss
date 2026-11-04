@@ -1,0 +1,45 @@
+@use '../abstracts' as ep;
+
+// Form with thin lines, no boxes
+.contact__form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ep.space('28');
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: ep.step(-2);
+  font-weight: ep.weight('medium');
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: ep.palette('text-muted');
+  margin-bottom: ep.space('6');
+}
+
+.form-input {
+  width: 100%;
+  font-family: ep.font('body');
+  font-size: ep.step(0);
+  color: ep.palette('text');
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, ep.palette('border-strong') 45%, transparent);
+  border-radius: 0;
+  padding: ep.space('8') 0;
+  outline: none;
+
+  &:focus {
+    border-bottom-color: ep.palette('primary');
+    box-shadow: 0 1px 0 0 ep.palette('primary');
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 7rem;
+}

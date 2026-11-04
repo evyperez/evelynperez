@@ -1,0 +1,17 @@
+{
+  "name": "evelyn-perez-portfolio",
+  "version": "2.0.0",
+  "description": "Portfolio — Evelyn Perez · Frontend Engineer & Designer",
+  "author": "Evelyn Perez",
+  "license": "MIT",
+  "homepage": "https://evelyn-perez.com",
+  "scripts": {
+    "css": "sass assets/stylesheets/index.scss static/css/main.css --no-source-map",
+    "css:watch": "sass assets/stylesheets/index.scss static/css/main.css --no-source-map --watch",
+    "start": "npm run css && hugo server --poll 700ms --disableFastRender --ignoreCache",
+    "build": "npm run css && hugo"
+  },
+  "devDependencies": {
+    "sass": "^1.101.0"
+  }
+}

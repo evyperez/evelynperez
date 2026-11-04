@@ -1,0 +1,311 @@
+<section class="hero">
+  <div class="hero__shapes" aria-hidden="true">
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="paper-felt" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="2" seed="8" result="fiber"/>
+          <feColorMatrix in="fiber" type="saturate" values="0" result="gray"/>
+          <feComponentTransfer in="gray" result="texture">
+            <feFuncR type="linear" slope=".1" intercept=".94"/>
+            <feFuncG type="linear" slope=".1" intercept=".94"/>
+            <feFuncB type="linear" slope=".1" intercept=".94"/>
+          </feComponentTransfer>
+          <feBlend in="SourceGraphic" in2="texture" mode="multiply" result="textured"/>
+          <feComposite in="textured" in2="SourceAlpha" operator="in" result="paper"/>
+          <feDropShadow in="paper" dx="0" dy="4" stdDeviation="4" flood-color="#3a2f26" flood-opacity=".27"/>
+        </filter>
+        <filter id="paper-soft" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="2" seed="8" result="fiber"/>
+          <feColorMatrix in="fiber" type="saturate" values="0" result="gray"/>
+          <feComponentTransfer in="gray" result="texture">
+            <feFuncR type="linear" slope=".08" intercept=".96"/>
+            <feFuncG type="linear" slope=".08" intercept=".96"/>
+            <feFuncB type="linear" slope=".08" intercept=".96"/>
+          </feComponentTransfer>
+          <feBlend in="SourceGraphic" in2="texture" mode="multiply" result="textured"/>
+          <feComposite in="textured" in2="SourceAlpha" operator="in" result="paper"/>
+          <feDropShadow in="paper" dx="0" dy="3" stdDeviation="3.5" flood-color="#3a2f26" flood-opacity=".22"/>
+        </filter>
+    <symbol id="pine" overflow="visible">
+      <rect class="pine__trunk" x="-11" y="266" width="22" height="52" rx="2"/>
+      <path class="pine__a" d="M0 184 L98 270 q-12.2 13 -24.5 0 q-12.2 13 -24.5 0 q-12.2 13 -24.5 0 q-12.2 13 -24.5 0 q-12.2 13 -24.5 0 q-12.2 13 -24.5 0 q-12.2 13 -24.5 0 q-12.2 13 -24.5 0 L0 184 Z"/>
+      <path class="pine__b" d="M0 132 L80 212 q-11.4 13 -22.9 0 q-11.4 13 -22.9 0 q-11.4 13 -22.9 0 q-11.4 13 -22.9 0 q-11.4 13 -22.9 0 q-11.4 13 -22.9 0 q-11.4 13 -22.9 0 L0 132 Z"/>
+      <path class="pine__a" d="M0 84 L62 158 q-10.3 13 -20.7 0 q-10.3 13 -20.7 0 q-10.3 13 -20.7 0 q-10.3 13 -20.7 0 q-10.3 13 -20.7 0 q-10.3 13 -20.7 0 L0 84 Z"/>
+      <path class="pine__b" d="M0 40 L46 108 q-9.2 13 -18.4 0 q-9.2 13 -18.4 0 q-9.2 13 -18.4 0 q-9.2 13 -18.4 0 q-9.2 13 -18.4 0 L0 40 Z"/>
+      <path class="pine__a" d="M0 0 L30 62 q-7.5 13 -15.0 0 q-7.5 13 -15.0 0 q-7.5 13 -15.0 0 q-7.5 13 -15.0 0 L0 0 Z"/>
+    </symbol>
+
+        <g id="cloud-1"><path d="M35 109C17 109 13 94 23 85C30 78 41 78 49 81C45 60 58 43 77 43C86 43 94 47 99 54C103 29 122 17 143 21C163 24 175 41 174 61C187 49 206 51 217 65C224 73 226 83 224 91C245 81 272 88 280 100C287 112 276 119 258 119H67C54 119 42 116 35 109Z"/></g>
+        <g id="cloud-2"><path d="M26 102C13 102 10 93 20 87C29 81 44 84 51 82C52 66 65 57 80 60C88 42 108 37 124 47C139 33 162 36 170 54C185 50 201 58 206 71C226 65 246 74 249 87C264 83 283 86 294 94C303 102 291 110 272 110H48C35 110 30 107 26 102Z"/></g>
+        <g id="cloud-3"><path d="M79 113C61 113 52 102 58 88C62 79 72 74 83 76C75 57 86 40 103 38C111 37 120 40 126 46C129 25 146 13 165 17C186 20 195 40 191 58C210 52 226 67 226 82C242 79 257 90 256 101C255 111 243 116 228 116H105C94 116 85 115 79 113Z"/></g>
+        <g id="cloud-4"><path d="M22 102C10 100 13 90 27 88L59 84C65 70 80 65 95 71C100 53 119 43 135 50C146 54 153 64 154 74C171 64 193 69 201 84C218 78 234 81 244 90L280 92C299 94 306 102 288 108C273 113 241 112 218 112H66C47 112 31 109 22 102Z"/></g>
+        <g id="cloud-5"><path d="M59 105C45 105 39 95 45 86C51 77 63 77 70 80C68 64 79 52 94 53C100 38 119 31 133 40C143 46 147 56 146 67C162 59 179 63 187 76C202 72 217 81 216 92C231 91 241 98 233 106C227 113 211 114 195 114H87C76 114 65 112 59 105Z"/></g>
+        <g id="cloud-6"><path d="M30 109C14 109 11 96 22 87C32 80 44 83 52 85C55 70 68 64 81 68C84 50 100 40 117 44C128 47 135 55 138 66C152 56 171 56 183 70C188 46 206 31 227 36C247 40 257 58 253 77C272 73 288 84 288 96C288 109 275 117 255 117H63C48 117 37 114 30 109Z"/></g>
+        <g id="cloud-7"><path d="M20 102C7 100 12 91 29 90L66 86C74 72 89 70 101 78C111 60 133 54 151 65C159 69 164 76 167 83C179 77 195 79 203 89L247 90C260 81 279 85 287 95C302 98 303 107 285 111H58C39 111 26 108 20 102Z"/></g>
+        <g id="cloud-8"><path d="M44 111C26 111 23 97 36 87C44 81 54 80 63 84C62 67 75 55 92 57C93 36 109 20 130 22C153 24 165 45 159 65C172 57 188 61 196 73C207 61 228 64 235 80C253 77 270 89 268 101C265 113 248 119 228 119H83C66 119 53 116 44 111Z"/></g>
+      </defs>
+    </svg>
+
+
+    <div class="shapes shapes--forest">
+      <svg class="forest-scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="forest-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" class="forest-scene__sky-top"/>
+            <stop offset="100%" class="forest-scene__sky-bottom"/>
+          </linearGradient>
+        </defs>
+        <rect width="1600" height="900" fill="url(#forest-sky)"/>
+        <path class="forest-scene__ridge--1" d="M-80 336 C18 304 110 286 202 294 C286 302 346 266 412 248 C486 228 582 244 666 276 C742 304 812 272 890 246 C964 220 1032 228 1102 210 C1182 188 1262 162 1344 170 C1424 178 1500 214 1582 206 C1658 198 1712 150 1760 126 L1760 920 L-80 920 Z"/>
+        <path class="forest-scene__ridge--2" d="M-60 484 C44 444 152 430 248 438 C336 446 416 398 506 386 C600 374 696 418 792 430 C888 442 970 404 1058 390 C1150 376 1246 398 1340 408 C1442 420 1542 410 1660 370 L1660 920 L-60 920 Z"/>
+        <g class="forest-scene__trees forest-scene__trees--back">
+          <use class="pine pine--dark" href="#pine" transform="translate(90 700) scale(0.8)"/>
+          <use class="pine" href="#pine" transform="translate(300 675) scale(0.95)"/>
+          <use class="pine pine--light" href="#pine" transform="translate(520 710) scale(0.7)"/>
+          <use class="pine" href="#pine" transform="translate(760 665) scale(1.0)"/>
+          <use class="pine pine--dark" href="#pine" transform="translate(1000 690) scale(0.85)"/>
+          <use class="pine" href="#pine" transform="translate(1250 675) scale(0.95)"/>
+          <use class="pine pine--dark" href="#pine" transform="translate(1480 706) scale(0.75)"/>
+        </g>
+        <g class="forest-scene__trees forest-scene__trees--front">
+          <use class="pine" href="#pine" transform="translate(30 700) scale(1.25)"/>
+          <use class="pine pine--dark" href="#pine" transform="translate(215 650) scale(1.5)"/>
+          <use class="pine pine--light" href="#pine" transform="translate(430 715) scale(1.1)"/>
+          <use class="pine pine--dark" href="#pine" transform="translate(650 660) scale(1.45)"/>
+          <use class="pine pine--pale" href="#pine" transform="translate(895 700) scale(1.2)"/>
+          <use class="pine pine--dark" href="#pine" transform="translate(1150 640) scale(1.55)"/>
+          <use class="pine pine--light" href="#pine" transform="translate(1380 690) scale(1.3)"/>
+          <use class="pine" href="#pine" transform="translate(1565 715) scale(1.15)"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="shapes shapes--flowers">
+      {{ partial "flowers-scene.html" . }}
+    </div>
+
+    <div class="shapes shapes--tejo">
+      {{ partial "tejo-scene.html" . }}
+      <svg class="wave-svg wave-svg--mid" viewBox="0 0 2880 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="wave-path wave-path--mid" d="M0,120 c100,-40 200,-40 300,0 c100,40 200,40 300,0 c100,-40 200,-40 300,0 c100,40 200,40 300,0 c100,-40 200,-40 300,0 c100,40 200,40 300,0 c100,-40 200,-40 300,0 c100,40 200,40 300,0 c100,-40 200,-40 300,0 c100,40 200,40 300,0 L2880,360 L0,360 Z"/>
+      </svg>
+      <svg class="wave-svg wave-svg--front" viewBox="0 0 2880 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="wave-path wave-path--front" d="M0,190 c60,-30 120,-30 180,0 c60,30 120,30 180,0 c60,-30 120,-30 180,0 c60,30 120,30 180,0 c60,-30 120,-30 180,0 c60,30 120,30 180,0 c60,-30 120,-30 180,0 c60,30 120,30 180,0 c60,-30 120,-30 180,0 c60,30 120,30 180,0 c60,-30 120,-30 180,0 c60,30 120,30 180,0 c60,-30 120,-30 180,0 c60,30 120,30 180,0 c60,-30 120,-30 180,0 c60,30 120,30 180,0 L2880,360 L0,360 Z"/>
+      </svg>
+    </div>
+
+    <div class="shapes shapes--lighthouse">
+
+
+      <div class="sr-stars">
+        <svg viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <circle class="star star--xs" cx="13" cy="27" r="0.6"/>
+          <circle class="star star--sm" cx="142" cy="17" r="0.8"/>
+          <circle class="star star--xs" cx="200" cy="13" r="0.6"/>
+          <circle class="star star--md" cx="264" cy="45" r="1.3"/>
+          <circle class="star star--xs" cx="371" cy="31" r="0.7"/>
+          <circle class="star star--md" cx="417" cy="17" r="1.6"/>
+          <circle class="star star--xl" cx="533" cy="42" r="3.0"/>
+          <circle class="star star--lg" cx="618" cy="47" r="2.3"/>
+          <circle class="star star--xs" cx="655" cy="25" r="0.4"/>
+          <circle class="star star--sm" cx="738" cy="28" r="0.9"/>
+          <circle class="star star--lg" cx="824" cy="27" r="2.4"/>
+          <circle class="star star--xs" cx="902" cy="53" r="0.5"/>
+          <circle class="star star--md" cx="1008" cy="43" r="1.7"/>
+          <circle class="star star--xs" cx="1065" cy="14" r="0.5"/>
+          <circle class="star star--xs" cx="1185" cy="61" r="0.6"/>
+          <circle class="star star--xs" cx="1263" cy="38" r="0.5"/>
+          <circle class="star star--lg" cx="1307" cy="45" r="2.2"/>
+          <circle class="star star--xs" cx="1428" cy="41" r="0.4"/>
+          <circle class="star star--xs" cx="136" cy="116" r="0.5"/>
+          <circle class="star star--lg" cx="202" cy="146" r="2.0"/>
+          <circle class="star star--xs" cx="290" cy="122" r="0.6"/>
+          <circle class="star star--lg" cx="437" cy="145" r="2.2"/>
+          <circle class="star star--lg" cx="502" cy="143" r="2.2"/>
+          <circle class="star star--md" cx="606" cy="101" r="1.6"/>
+          <circle class="star star--xs" cx="682" cy="92" r="0.4"/>
+          <circle class="star star--xs" cx="781" cy="139" r="0.4"/>
+          <circle class="star star--sm" cx="865" cy="97" r="0.8"/>
+          <circle class="star star--sm" cx="935" cy="99" r="1.0"/>
+          <circle class="star star--xs" cx="1021" cy="116" r="0.6"/>
+          <circle class="star star--xl" cx="1063" cy="109" r="3.2"/>
+          <circle class="star star--xs" cx="1161" cy="99" r="0.5"/>
+          <circle class="star star--xs" cx="1225" cy="104" r="0.6"/>
+          <circle class="star star--xs" cx="1343" cy="140" r="0.5"/>
+          <circle class="star star--lg" cx="1384" cy="99" r="2.3"/>
+          <circle class="star star--xs" cx="56" cy="217" r="0.4"/>
+          <circle class="star star--md" cx="116" cy="198" r="1.6"/>
+          <circle class="star star--xs" cx="178" cy="195" r="0.7"/>
+          <circle class="star star--sm" cx="263" cy="197" r="0.9"/>
+          <circle class="star star--lg" cx="384" cy="197" r="2.3"/>
+          <circle class="star star--lg" cx="539" cy="226" r="2.5"/>
+          <circle class="star star--sm" cx="599" cy="184" r="0.8"/>
+          <circle class="star star--md" cx="707" cy="187" r="1.5"/>
+          <circle class="star star--sm" cx="786" cy="228" r="1.1"/>
+          <circle class="star star--sm" cx="829" cy="226" r="1.0"/>
+          <circle class="star star--sm" cx="895" cy="205" r="1.1"/>
+          <circle class="star star--xs" cx="1026" cy="176" r="0.6"/>
+          <circle class="star star--lg" cx="1065" cy="179" r="2.1"/>
+          <circle class="star star--sm" cx="1167" cy="195" r="1.0"/>
+          <circle class="star star--xs" cx="1223" cy="212" r="0.5"/>
+          <circle class="star star--md" cx="1309" cy="190" r="1.3"/>
+          <circle class="star star--xs" cx="1428" cy="228" r="0.5"/>
+          <circle class="star star--lg" cx="64" cy="301" r="2.2"/>
+          <circle class="star star--sm" cx="139" cy="291" r="1.2"/>
+          <circle class="star star--xs" cx="172" cy="298" r="0.6"/>
+          <circle class="star star--xs" cx="260" cy="258" r="0.6"/>
+          <circle class="star star--xs" cx="366" cy="292" r="0.6"/>
+          <circle class="star star--md" cx="439" cy="303" r="1.3"/>
+          <circle class="star star--md" cx="507" cy="252" r="1.6"/>
+          <circle class="star star--sm" cx="614" cy="283" r="0.8"/>
+          <circle class="star star--md" cx="783" cy="283" r="1.6"/>
+          <circle class="star star--lg" cx="819" cy="269" r="2.5"/>
+          <circle class="star star--xs" cx="942" cy="264" r="0.4"/>
+          <circle class="star star--sm" cx="1022" cy="275" r="0.9"/>
+          <circle class="star star--md" cx="1100" cy="307" r="1.7"/>
+          <circle class="star star--md" cx="1231" cy="304" r="1.7"/>
+          <circle class="star star--xs" cx="1307" cy="296" r="0.7"/>
+          <circle class="star star--sm" cx="1384" cy="298" r="0.9"/>
+          <circle class="star star--xs" cx="25" cy="333" r="0.5"/>
+          <circle class="star star--md" cx="146" cy="348" r="1.5"/>
+          <circle class="star star--xs" cx="202" cy="385" r="0.7"/>
+          <circle class="star star--xs" cx="306" cy="347" r="0.5"/>
+          <circle class="star star--sm" cx="350" cy="366" r="1.0"/>
+          <circle class="star star--xs" cx="426" cy="372" r="0.7"/>
+          <circle class="star star--md" cx="532" cy="374" r="1.5"/>
+          <circle class="star star--md" cx="670" cy="350" r="1.7"/>
+          <circle class="star star--sm" cx="749" cy="355" r="0.9"/>
+          <circle class="star star--lg" cx="945" cy="370" r="2.4"/>
+          <circle class="star star--xs" cx="1003" cy="332" r="0.5"/>
+          <circle class="star star--sm" cx="1089" cy="358" r="0.9"/>
+          <circle class="star star--xs" cx="1182" cy="377" r="0.4"/>
+          <circle class="star star--md" cx="1247" cy="351" r="1.7"/>
+          <circle class="star star--xs" cx="1305" cy="343" r="0.5"/>
+          <circle class="star star--sm" cx="1420" cy="336" r="1.1"/>
+          <circle class="star star--xs" cx="51" cy="440" r="0.6"/>
+          <circle class="star star--sm" cx="215" cy="418" r="0.9"/>
+          <circle class="star star--xs" cx="281" cy="415" r="0.7"/>
+          <circle class="star star--xl" cx="377" cy="449" r="3.2"/>
+          <circle class="star star--md" cx="462" cy="446" r="1.6"/>
+          <circle class="star star--md" cx="523" cy="462" r="1.5"/>
+          <circle class="star star--md" cx="586" cy="448" r="1.6"/>
+          <circle class="star star--xs" cx="667" cy="416" r="0.5"/>
+          <circle class="star star--xs" cx="762" cy="420" r="0.6"/>
+          <circle class="star star--sm" cx="816" cy="435" r="1.0"/>
+          <circle class="star star--sm" cx="916" cy="463" r="1.1"/>
+          <circle class="star star--xs" cx="1015" cy="433" r="0.5"/>
+          <circle class="star star--sm" cx="1100" cy="465" r="1.1"/>
+          <circle class="star star--xs" cx="1166" cy="424" r="0.5"/>
+          <circle class="star star--xs" cx="1330" cy="435" r="0.5"/>
+          <circle class="star star--sm" cx="14" cy="514" r="0.8"/>
+          <circle class="star star--xs" cx="100" cy="518" r="0.5"/>
+          <circle class="star star--sm" cx="190" cy="535" r="1.1"/>
+          <circle class="star star--xs" cx="266" cy="497" r="0.6"/>
+          <circle class="star star--md" cx="352" cy="528" r="1.6"/>
+          <circle class="star star--xs" cx="465" cy="503" r="0.4"/>
+          <circle class="star star--md" cx="604" cy="504" r="1.7"/>
+          <circle class="star star--xs" cx="686" cy="534" r="0.6"/>
+          <circle class="star star--xs" cx="738" cy="493" r="0.6"/>
+          <circle class="star star--xs" cx="834" cy="532" r="0.6"/>
+          <circle class="star star--md" cx="898" cy="535" r="1.6"/>
+          <circle class="star star--sm" cx="1096" cy="511" r="0.9"/>
+          <circle class="star star--md" cx="1151" cy="540" r="1.4"/>
+          <circle class="star star--md" cx="1248" cy="538" r="1.5"/>
+          <circle class="star star--md" cx="1346" cy="507" r="1.6"/>
+          <circle class="star star--xs" cx="1396" cy="533" r="0.7"/>
+          <circle class="star star--xs" cx="17" cy="621" r="0.5"/>
+          <circle class="star star--md" cx="113" cy="574" r="1.4"/>
+          <circle class="star star--lg" cx="217" cy="591" r="2.4"/>
+          <circle class="star star--xs" cx="253" cy="625" r="0.6"/>
+          <circle class="star star--md" cx="374" cy="611" r="1.5"/>
+          <circle class="star star--md" cx="417" cy="584" r="1.5"/>
+          <circle class="star star--sm" cx="519" cy="602" r="1.1"/>
+          <circle class="star star--xs" cx="611" cy="587" r="0.4"/>
+          <circle class="star star--md" cx="659" cy="602" r="1.4"/>
+          <circle class="star star--xl" cx="759" cy="613" r="3.1"/>
+          <circle class="star star--xs" cx="818" cy="583" r="0.5"/>
+          <circle class="star star--sm" cx="987" cy="627" r="1.1"/>
+          <circle class="star star--sm" cx="1159" cy="621" r="1.0"/>
+          <circle class="star star--lg" cx="1222" cy="575" r="2.3"/>
+          <circle class="star star--sm" cx="1314" cy="576" r="0.8"/>
+          <circle class="star star--xl" cx="1404" cy="589" r="2.9"/>
+          <circle class="star star--xs" cx="46" cy="696" r="0.6"/>
+          <circle class="star star--xl" cx="117" cy="700" r="3.0"/>
+          <circle class="star star--lg" cx="206" cy="693" r="2.1"/>
+          <circle class="star star--xs" cx="289" cy="661" r="0.4"/>
+          <circle class="star star--xs" cx="445" cy="668" r="0.6"/>
+          <circle class="star star--lg" cx="517" cy="690" r="2.5"/>
+          <circle class="star star--sm" cx="609" cy="704" r="1.0"/>
+          <circle class="star star--xs" cx="703" cy="698" r="0.4"/>
+          <circle class="star star--xs" cx="774" cy="684" r="0.4"/>
+          <circle class="star star--sm" cx="851" cy="705" r="1.0"/>
+          <circle class="star star--xs" cx="1070" cy="666" r="0.7"/>
+          <circle class="star star--xl" cx="1164" cy="705" r="3.2"/>
+          <circle class="star star--sm" cx="1214" cy="694" r="1.1"/>
+          <circle class="star star--sm" cx="1302" cy="685" r="1.0"/>
+          <circle class="star star--md" cx="31" cy="770" r="1.5"/>
+          <circle class="star star--md" cx="108" cy="785" r="1.6"/>
+          <circle class="star star--xl" cx="190" cy="750" r="3.0"/>
+          <circle class="star star--sm" cx="307" cy="769" r="1.0"/>
+          <circle class="star star--sm" cx="352" cy="774" r="1.1"/>
+          <circle class="star star--sm" cx="443" cy="784" r="1.1"/>
+          <circle class="star star--xs" cx="606" cy="745" r="0.6"/>
+          <circle class="star star--lg" cx="657" cy="788" r="2.3"/>
+          <circle class="star star--sm" cx="840" cy="772" r="0.9"/>
+          <circle class="star star--sm" cx="947" cy="746" r="1.0"/>
+          <circle class="star star--lg" cx="1000" cy="781" r="2.2"/>
+          <circle class="star star--sm" cx="1075" cy="784" r="1.1"/>
+          <circle class="star star--xl" cx="1149" cy="765" r="3.1"/>
+          <circle class="star star--sm" cx="1242" cy="751" r="1.0"/>
+          <circle class="star star--md" cx="1310" cy="743" r="1.6"/>
+          <circle class="star star--md" cx="1415" cy="734" r="1.7"/>
+          {{ partial "lighthouse-extra-stars.html" . }}
+        </svg>
+      </div>
+
+            <div class="sky-clouds" aria-hidden="true">
+        <svg class="sky-cloud sky-cloud--1" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-1"/></svg>
+        <svg class="sky-cloud sky-cloud--2 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-2"/></svg>
+        <svg class="sky-cloud sky-cloud--3" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-7"/></svg>
+        <svg class="sky-cloud sky-cloud--4 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-3"/></svg>
+        <svg class="sky-cloud sky-cloud--5" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-5"/></svg>
+        <svg class="sky-cloud sky-cloud--6 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-6"/></svg>
+        <svg class="sky-cloud sky-cloud--7" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-8"/></svg>
+        <svg class="sky-cloud sky-cloud--8 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-4"/></svg>
+        <svg class="sky-cloud sky-cloud--9" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-5"/></svg>
+        <svg class="sky-cloud sky-cloud--10 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-7"/></svg>
+        <svg class="sky-cloud sky-cloud--11" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-3"/></svg>
+        <svg class="sky-cloud sky-cloud--12 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-2"/></svg>
+        <svg class="sky-cloud sky-cloud--13" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-4"/></svg>
+        <svg class="sky-cloud sky-cloud--14 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-8"/></svg>
+        <svg class="sky-cloud sky-cloud--15" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-7"/></svg>
+        <svg class="sky-cloud sky-cloud--16 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-5"/></svg>
+        <svg class="sky-cloud sky-cloud--17" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-1"/></svg>
+        <svg class="sky-cloud sky-cloud--18 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-6"/></svg>
+        <svg class="sky-cloud sky-cloud--19" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-2"/></svg>
+        <svg class="sky-cloud sky-cloud--20 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-4"/></svg>
+        <svg class="sky-cloud sky-cloud--21" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-5"/></svg>
+        <svg class="sky-cloud sky-cloud--22 sky-cloud--soft" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg"><use href="#cloud-8"/></svg>
+      </div>
+
+      {{ partial "lighthouse-scene.html" . }}
+
+    </div>
+
+  </div>
+
+  {{ partial "lighthouse-celestial.html" . }}
+
+  <div class="container">
+    <div class="hero__content">
+      <p class="hero__greeting">{{ i18n "heroGreeting" }}</p>
+      <h1 class="hero__identity">{{ i18n "heroTitle" }}</h1>
+      <p class="hero__summary">{{ i18n "heroSummary" }}</p>
+      <div class="hero__actions">
+        <a href="#projects" class="btn btn--primary">{{ i18n "heroCtaWork" }}</a>
+        <a href="#contact" class="btn btn--outline">{{ i18n "heroCtaContact" }}</a>
+      </div>
+    </div>
+  </div>
+</section>

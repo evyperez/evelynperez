@@ -1,0 +1,21 @@
+@use 'sass:meta';
+@use '../abstracts' as ep;
+
+// Global variables that don't depend on the palette.
+:root {
+  @each $name, $value in ep.$font-families {
+    --ep-font-#{$name}: #{meta.inspect($value)};
+  }
+
+  @each $name, $value in ep.$radius-sizes {
+    --ep-radius-#{$name}: #{meta.inspect($value)};
+  }
+
+  @each $name, $value in ep.$easings {
+    --ep-ease-#{$name}: #{meta.inspect($value)};
+  }
+
+  @each $name, $value in ep.$layout {
+    --ep-#{$name}: #{meta.inspect($value)};
+  }
+}

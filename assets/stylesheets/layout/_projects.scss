@@ -1,0 +1,354 @@
+@use '../abstracts' as ep;
+@use '../components/carousel';
+
+#projects {
+  background: ep.palette('background-alt');
+  overflow-x: clip; // the carousel track overflows; see components/_carousel.scss
+}
+
+// ── Header: title on the left, arrows on the right ──
+.projects__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: ep.space('24');
+  margin-bottom: clamp(ep.space('32'), 4vw, ep.space('48'));
+
+  .section-header { margin-bottom: 0; }
+}
+
+.projects__head .carousel__arrows {
+  gap: ep.space('10');
+  flex-shrink: 0;
+}
+
+// ── Card ──
+// No box: the color block with the logo is the card, and the text sits below.
+.project-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  // Hover: the block lifts a little and gets a soft shadow; the logo grows slightly.
+  &:hover .project-card__media,
+  &:focus-visible .project-card__media {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px -12px color-mix(in srgb, ep.palette('heading') 28%, transparent);
+  }
+
+  &:hover .project-card__logo,
+  &:hover .project-card__img,
+  &:hover .project-card__wordmark { transform: scale(1.07); }
+
+  &:hover .project-card__name { color: ep.palette('secondary'); }
+  &:focus-visible { @include ep.focus-ring(ep.space('6'), ep.radius('m')); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card__media,
+    .project-card__logo,
+    .project-card__img,
+    .project-card__wordmark { transition: none; }
+
+    &:hover .project-card__media,
+    &:focus-visible .project-card__media,
+    &:hover .project-card__logo,
+    &:hover .project-card__img,
+    &:hover .project-card__wordmark { transform: none; }
+  }
+}
+
+.project-card__media {
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--thumb-bg, ep.palette('highlight'));
+  border-radius: ep.radius('m');
+  overflow: hidden;
+  transition: transform ep.duration('medium') ease, box-shadow ep.duration('medium') ease;
+
+  picture { display: block; width: 100%; height: 100%; }
+}
+
+// The PNG logo <picture> takes the same space as the SVG.
+.project-card__media picture:has(.project-card__logo) {
+  width: 52%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+  .project-card__logo { width: 100%; max-height: none; }
+}
+
+.project-card__logo {
+  width: 52%;
+  max-height: 34%;
+  object-fit: contain;
+  transition: transform ep.duration('medium') ease;
+}
+
+// No logo or image: the project name takes the logo's place.
+.project-card__wordmark {
+  @include ep.title('xl', 'regular');
+
+  color: ep.palette('heading');
+  transition: transform ep.duration('medium') ease;
+}
+
+.project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform ep.duration('slow') ease;
+}
+
+.project-card__body {
+  padding-top: ep.space('16');
+}
+
+.project-card__name {
+  font-family: ep.font('display');
+  font-size: ep.step(3);
+  font-weight: ep.weight('regular');
+  line-height: ep.leading('snug');
+  color: ep.palette('heading');
+}
+
+.project-card__meta {
+  margin-top: ep.space('4');
+  font-size: ep.step(-1);
+  color: ep.palette('text-muted');
+}
+
+// /projects/ page (no carousel)
+.projects-grid {
+  display: grid;
+  gap: ep.space('24');
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+}
+
+// ── Detail page ──
+// Single column, Medium style: title, images and text share the same width.
+.article-shell.project-page__wrap {
+  max-width: calc(ep.layout('measure') + 2 * ep.layout('container-padding'));
+}
+
+// ── Project navigation (top) ──
+// Previous · All projects · Next. Compact = round arrows only.
+// ── Breadcrumb ──
+.breadcrumbs {
+  margin-bottom: ep.space('16');
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: ep.space('4') ep.space('8');
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: ep.step(-1);
+    color: ep.palette('text-muted');
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: ep.space('8');
+    min-width: 0;
+  }
+
+  // visual-only "/" separator (the empty alt text keeps screen readers from reading it)
+  li + li::before {
+    content: "/" / "";
+    color: color-mix(in srgb, ep.palette('text-muted') 55%, transparent);
+  }
+
+  a {
+    color: ep.palette('text-muted');
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+
+    &:hover { color: ep.palette('secondary'); }
+  }
+
+  [aria-current="page"] {
+    color: ep.palette('heading');
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// Previous and next, below the breadcrumb.
+.project-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: ep.space('14') ep.space('16');
+  margin-bottom: ep.space('40');
+}
+
+.project-nav__link {
+  font-size: ep.step(-1);
+  color: ep.palette('text-muted');
+  white-space: nowrap;
+
+  &:hover { color: ep.palette('secondary'); }
+}
+
+.project-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: ep.space('6');
+  text-decoration: none;
+
+  &--prev { grid-column: 1; justify-self: start; }
+  &--next { grid-column: 2; justify-self: end; }
+}
+
+// No room for the names: round arrows, same as the carousel's (see components/_carousel.scss).
+.project-nav.is-compact,
+.no-js .project-nav {
+  .project-nav__text {
+    @include ep.visually-hidden;
+  }
+
+  .project-nav__link {
+    @include carousel.round-arrow(2.5rem);
+
+    justify-content: center;
+    transition: background ep.duration('fast') ease, color ep.duration('fast') ease;
+  }
+}
+
+@include ep.below('xs') {
+  .project-nav .project-nav__text {
+    @include ep.visually-hidden;
+  }
+
+  .project-nav .project-nav__link {
+    @include carousel.round-arrow(2.5rem, $hover: false);
+
+    justify-content: center;
+  }
+}
+
+
+.project-page__title {
+  @include ep.title('3xl', 'regular');
+
+  color: ep.palette('heading');
+}
+
+.project-page__lead {
+  margin-top: ep.space('20');
+  font-size: clamp(#{ep.step(1)}, 1.6vw, #{ep.step(2)});
+  line-height: ep.leading('normal');
+  color: ep.palette('text-muted');
+}
+
+.project-page__media {
+  width: 100%;
+  max-width: ep.layout('measure');
+  margin-inline: auto;
+  margin-block: clamp(ep.space('40'), 5vw, ep.space('56'));
+  border-radius: ep.radius('m');
+  overflow: hidden;
+  background: var(--thumb-bg, ep.palette('highlight'));
+
+  picture { display: block; }
+}
+
+.project-page__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-page__facts {
+  display: grid;
+  gap: ep.space('20') ep.space('40');
+  // Site, year and location side by side; the stack takes the full row below.
+  grid-template-columns: repeat(3, max-content);
+  justify-content: start;
+
+  .project-page__facts-stack { grid-column: 1 / -1; }
+  padding-bottom: ep.space('32');
+  margin-bottom: ep.space('40');
+  border-bottom: 1px solid color-mix(in srgb, ep.palette('border-strong') 18%, transparent);
+
+  @include ep.below('sm') { grid-template-columns: 1fr; }
+
+  dt {
+    font-size: ep.step(-2);
+    font-weight: ep.weight('medium');
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: ep.palette('text-muted');
+    margin-bottom: ep.space('6');
+  }
+
+  dd a {
+    color: ep.palette('primary');
+    text-decoration: underline;
+    text-underline-offset: 4px;
+
+    &:hover { color: ep.palette('secondary'); }
+  }
+}
+
+.project-page__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: ep.space('6');
+}
+
+// ── Navigation at the end of the page ──
+.project-pager {
+  margin-top: ep.space('64');
+  padding-top: ep.space('32');
+  border-top: 1px solid color-mix(in srgb, ep.palette('border-strong') 18%, transparent);
+}
+
+.project-pager__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ep.space('24');
+}
+
+.project-pager__link {
+  display: flex;
+  flex-direction: column;
+  gap: ep.space('6');
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+
+  &--next { text-align: right; align-items: flex-end; }
+
+  &:hover .project-pager__title { color: ep.palette('secondary'); }
+}
+
+.project-pager__label {
+  font-size: ep.step(-2);
+  font-weight: ep.weight('medium');
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: ep.palette('text-muted');
+}
+
+.project-pager__title {
+  @include ep.title('xl', 'regular');
+
+  color: ep.palette('heading');
+}
+
+// ── Project body ──
+.project-page__body .content-figure {
+  margin-block: clamp(ep.space('32'), 5vw, ep.space('48'));
+}

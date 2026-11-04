@@ -1,0 +1,17 @@
+@use 'forest';
+@use 'tejo';
+@use 'lighthouse';
+@use 'flowers';
+
+/// # Scenes
+///
+/// Hero illustration colors, one scene per theme. Kept out of the palettes:
+/// each scene only shows in its own theme and has its own colors.
+/// They become `--ep-<scene>-<name>` and are used with `ep.scene('<scene>', '<name>')`.
+/// `dark` only lists what changes.
+$scenes: (
+  'forest': forest.$colors,
+  'tejo': tejo.$colors,
+  'lighthouse': lighthouse.$colors,
+  'flowers': flowers.$colors,
+);

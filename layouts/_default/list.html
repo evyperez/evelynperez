@@ -1,0 +1,89 @@
+{{ define "main" }}
+<div class="blog-list">
+  <div class="blog-list__container" id="blog-list-page">
+
+    <header class="blog-list__header">
+      <h1 class="blog-list__title">{{ .Title }}</h1>
+      {{ with .Description }}<p class="blog-list__sub">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="blog-list__toolbar">
+      <label class="blog-search" for="blog-search">
+        <span class="blog-search__icon">⌕</span>
+        <input id="blog-search" type="search" placeholder='{{ i18n "blogSearchPlaceholder" }}'>
+      </label>
+      <button class="blog-view-toggle" id="blog-view-toggle" type="button" aria-pressed="false" data-grid-label='{{ i18n "blogViewGrid" }}' data-list-label='{{ i18n "blogViewList" }}'>
+        {{ i18n "blogViewGrid" }}
+      </button>
+    </div>
+
+    {{- /* Every post is on the page so search can find any of them;
+         without a search, only the current page's posts show (the rest are hidden). */ -}}
+    {{- $size := .Paginator.PagerSize }}
+    {{- $current := .Paginator.PageNumber }}
+    <div class="post-rows" id="post-rows" data-blog-view="grid" data-current-page="{{ $current }}">
+      {{ range $i, $p := .Pages }}{{ with $p }}
+      {{- $page := add (div $i $size) 1 }}
+      {{- $thumbnail := .Params.thumbnail | default .Params.image }}
+      <article class="post-row" data-post-item data-page="{{ $page }}"{{ if ne $page $current }} hidden{{ end }} data-search='{{ printf "%s %s %s %s" .Title (.Description | default "") (delimit (.Params.tags | default (slice)) " ") .Plain | lower }}'>
+        <div class="post-row__main">
+          <a class="post-row__link" href="{{ .Permalink }}">
+            <p class="post-row__meta">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+              <span>· {{ .ReadingTime }} {{ i18n "blogMin" | lower }}</span>
+            </p>
+            <h2 class="post-row__title">{{ .Title }}</h2>
+            <p class="post-row__desc">{{ .Description | default (.Summary | truncate 160) }}</p>
+          </a>
+          {{ with .Params.tags }}
+          <div class="post-row__tags">
+            {{ range first 3 . }}<a class="tag" href='{{ printf "tags/%s" (. | urlize) | relLangURL }}'>{{ . }}</a>{{ end }}
+          </div>
+          {{ end }}
+          {{- /* List view only: a good part of the article, "read more" opens the rest right here */ -}}
+          {{ $bodyId := printf "post-body-%s" (anchorize .Title) }}
+          <div class="post-row__full" data-post-full>
+            <div class="article__body post-row__body" id="{{ $bodyId }}">
+              {{ .Content }}
+            </div>
+            <button class="post-row__more" type="button" aria-expanded="false" aria-controls="{{ $bodyId }}" data-more='{{ i18n "blogReadMore" }}' data-less='{{ i18n "blogShowLess" }}'>{{ i18n "blogReadMore" }}</button>
+          </div>
+        </div>
+        <a class="post-row__thumb{{ if not $thumbnail }} post-row__thumb--placeholder{{ end }}" href="{{ .Permalink }}" tabindex="-1" aria-hidden="true">
+          {{ if $thumbnail }}
+            {{ partial "picture.html" (dict "src" $thumbnail "width" (.Params.thumbnailWidth | default .Params.imageWidth) "height" (.Params.thumbnailHeight | default .Params.imageHeight) "alt" "" "loading" "lazy" "sizes" "(min-width: 1000px) 24rem, (min-width: 640px) 50vw, 100vw") }}
+          {{ else }}
+            {{ partial "blog-thumb-placeholder.html" (dict "id" (anchorize .Title)) }}
+          {{ end }}
+        </a>
+      </article>
+      {{ end }}{{ end }}
+    </div>
+
+    <p class="blog-list__empty" id="blog-list-empty" hidden>{{ i18n "blogNoResults" }}</p>
+
+    {{ if gt .Paginator.TotalPages 1 }}
+      <nav class="pagination" id="blog-pagination" aria-label='{{ i18n "blogPagination" }}'>
+        {{ if .Paginator.HasPrev }}
+          <a href="{{ .Paginator.Prev.URL }}" class="pagination__link pagination__link--prev">← {{ i18n "blogPrev" }}</a>
+        {{ end }}
+        <ol class="pagination__pages">
+          {{ range .Paginator.Pagers }}
+            <li>
+              {{ if eq . $.Paginator }}
+                <span class="pagination__page is-current" aria-current="page">{{ .PageNumber }}</span>
+              {{ else }}
+                <a class="pagination__page" href="{{ .URL }}">{{ .PageNumber }}</a>
+              {{ end }}
+            </li>
+          {{ end }}
+        </ol>
+        {{ if .Paginator.HasNext }}
+          <a href="{{ .Paginator.Next.URL }}" class="pagination__link pagination__link--next">{{ i18n "blogNext" }} →</a>
+        {{ end }}
+      </nav>
+    {{ end }}
+
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,403 @@
+- id: navAbout
+  translation: Sobre
+- id: navWork
+  translation: Trabalho
+- id: navBlog
+  translation: Blog
+- id: navResume
+  translation: Currículo
+- id: navContact
+  translation: Contacto
+
+- id: heroGreeting
+  translation: Olá, sou a Evelyn
+- id: heroTitle
+  translation: Engenheira de software e designer
+- id: heroSummary
+  translation: "Na maior parte dos dias, estou a construir interfaces, a dar forma a design systems e a descobrir como pôr as coisas a funcionar. E a documentar tudo, porque se não está documentado, será que existe mesmo?"
+- id: heroCtaWork
+  translation: Ver trabalho
+- id: heroCtaContact
+  translation: Trabalhar comigo
+
+- id: aboutLabel
+  translation: "Sobre mim"
+- id: aboutTitle
+  translation: "Foi o design que me trouxe"
+- id: aboutTitleHighlight
+  translation: "Até aqui"
+- id: aboutIntro
+  translation: "Sou"
+- id: aboutRole
+  translation: "Engenheira de software e designer."
+- id: aboutP1
+  translation: "Passo a maior parte do tempo do lado do desenvolvimento."
+- id: aboutP2
+  translation: "Comecei no design gráfico em 2011. À medida que personalizar sites e aplicações passou a ocupar mais espaço no meu trabalho, quis perceber como as coisas funcionavam e aprender a construí-las eu própria. Em 2016, entrei na {{ .reprograma }}, um bootcamp de front-end para mulheres, onde mais tarde fui voluntária, a ajudar outras mulheres a aprender a programar. Em 2017, comecei a trabalhar como engenheira de software."
+- id: aboutP3
+  translation: "Desde então, trabalhei com startups e equipas que desenvolvem aplicações de e-commerce, saúde, banca e aviação, sobretudo com JavaScript e TypeScript. O Angular é o que mais uso, mas também já trabalhei com Vue.js, AngularJS, Hugo e, no back-end, NestJS e Express. O front-end é onde me sinto mais em casa."
+- id: aboutP4
+  translation: "Actualmente, estou na Aubay, a ajudar a construir de raiz o design system da TAP Air Portugal. Transformo designs em componentes e bibliotecas que ajudam a manter os produtos da TAP consistentes, para que as equipas não tenham de construir as mesmas coisas vezes sem conta. Também ajudo a orientar as decisões técnicas de front-end, trazendo o design e a acessibilidade para a conversa."
+- id: aboutLocationLabel
+  translation: Localização
+- id: aboutExperienceLabel
+  translation: Experiência
+- id: aboutExperienceDesign
+  translation: "Design: 15+ anos"
+- id: aboutExperienceCode
+  translation: "Código: 10+ anos"
+- id: aboutBackgroundLabel
+  translation: "Foco"
+- id: aboutBackgroundValue
+  translation: "Design systems · Front-end · Acessibilidade"
+- id: aboutCurrentValue
+  translation: "Aubay · TAP Air Portugal"
+- id: aboutCurrentLabel
+  translation: "Actualmente"
+- id: aboutLanguagesLabel
+  translation: Idiomas
+- id: aboutLanguagesValue
+  translation: "Inglês, Português"
+- id: aboutCertsLabel
+  translation: Certificados
+
+- id: projectsLabel
+  translation: "Portfólio"
+- id: projectsTitle
+  translation: "Projectos"
+- id: projectsTitleHighlight
+  translation: "Seleccionados"
+
+- id: blogLabel
+  translation: "Blog"
+- id: blogTitle
+  translation: "O que tenho"
+- id: blogTitleHighlight
+  translation: "Escrito"
+- id: blogAllPosts
+  translation: Todos os artigos ↗
+- id: blogBack
+  translation: Todos os artigos
+- id: blogSearchPlaceholder
+  translation: Procurar nos artigos...
+- id: blogViewGrid
+  translation: Grelha
+- id: blogViewList
+  translation: Lista
+- id: blogNoResults
+  translation: Nenhum artigo encontrado.
+- id: blogRelatedTitle
+  translation: Mais do blog
+- id: blogRead
+  translation: Ler artigo
+- id: blogAuthorAria
+  translation: Sobre a autora
+- id: blogAuthorLabel
+  translation: Escrito por
+- id: blogAuthorBio
+  translation: Engenheira de software e designer. Ainda gosto de programar.
+
+- id: testimonialsTitle
+  translation: "O que"
+- id: testimonialsTitleHighlight
+  translation: "Dizem"
+
+- id: contactTitle
+  translation: "Entra em contacto"
+- id: contactSub
+  translation: "Podes escrever-me através do formulário ou para {{ .email }}."
+
+- id: formNameLbl
+  translation: Nome
+- id: formEmailLbl
+  translation: Email
+- id: formMsgLbl
+  translation: "Mensagem"
+- id: formSubmit
+  translation: "Enviar"
+- id: formSent
+  translation: "Obrigada! A tua mensagem foi enviada."
+- id: formError
+  translation: "Algo correu mal. Tenta novamente ou envia-me um e-mail."
+
+- id: footerNoCookies
+  translation: "Não usamos cookies."
+
+- id: footerPrivacy
+  translation: Privacidade
+- id: footerSocialAria
+  translation: "Redes sociais"
+
+- id: t1Highlight
+  translation: "É uma referência para quem trabalha com ela."
+- id: t1Quote
+  translation: "A Evelyn é uma profissional dedicada e especialista em Front-end. É uma referência para quem trabalha com ela e tem muita experiência na área. É criativa, participativa, muito activa e extremamente competente. Aprendi muito com ela! É sempre sucinta, objectiva e espectacular. Foi um prazer enorme trabalhar de perto com ela diariamente."
+- id: t1Name
+  translation: Renan Theodoro
+- id: t1Role
+  translation: Frontend Developer · MeuDNA / Mendelics
+- id: t2Highlight
+  translation: "Criativa, proactiva, muito competente no desenvolvimento frontend."
+- id: t2Quote
+  translation: "A Evelyn é criativa, proactiva, muito competente no desenvolvimento frontend e também consegue contribuir com a equipa no backend!"
+- id: t2Name
+  translation: Anna Munhoz
+- id: t2Role
+  translation: Developer · MeuDNA / Mendelics
+- id: t3Highlight
+  translation: "Muito autêntica e criativa no seu trabalho."
+- id: t3Quote
+  translation: "Tive a oportunidade de coordenar a Evelyn em 2011, no início da sua carreira profissional, na Smart Fit. É uma profissional bastante proactiva e com vontade de aprender, muito autêntica e criativa no seu trabalho."
+- id: t3Name
+  translation: Guilherme Mota
+- id: t3Role
+  translation: Coordenador · Smart Fit – Bio Ritmo Academia
+
+- id: skipToContent
+  translation: Saltar para o conteúdo
+
+- id: toolkitLabel
+  translation: Na prática
+- id: toolkitTitle
+  translation: "Tecnologias com que"
+- id: toolkitTitleHighlight
+  translation: "Trabalho"
+- id: toolkitDelivery
+  translation: "Entrega"
+- id: toolkitCloud
+  translation: "Cloud"
+- id: toolkitDesign
+  translation: "Design"
+- id: toolkitBackend
+  translation: "Back-end"
+- id: toolkitProgramming
+  translation: "Linguagens de programação"
+- id: toolkitFrontend
+  translation: "Front-end"
+- id: toolkitTesting
+  translation: "Testes e acessibilidade"
+
+- id: navAria
+  translation: Navegação principal
+- id: navThemeAria
+  translation: Mudar tema de cor
+- id: navDarkAria
+  translation: Alternar modo escuro
+- id: navHamburgerAria
+  translation: Abrir menu
+- id: navLangAria
+  translation: Selecionar idioma
+
+- id: testimonialsPrev
+  translation: Diapositivo anterior
+- id: testimonialsNext
+  translation: Próximo diapositivo
+- id: testimonialsGoTo
+  translation: Ir para diapositivo
+
+- id: formHoneypot
+  translation: Não preencha isto
+
+- id: blogMin
+  translation: Min
+- id: blogPrev
+  translation: Anterior
+- id: blogNext
+  translation: Seguinte
+
+- id: buddyWhisper
+  translation: "Psst… queres saber um segredo?"
+- id: buddyLabel
+  translation: "Uma pequena Evy está a espreitar. Clica para saberes mais sobre mim."
+
+- id: blogReadMore
+  translation: "Continuar a ler ↓"
+
+- id: blogShowLess
+  translation: "Mostrar menos ↑"
+
+- id: blogPagination
+  translation: "Páginas do blog"
+- id: contactCalQ
+  translation: "Se preferires uma chamada,"
+- id: contactCalLink
+  translation: "Escolhe um horário na minha agenda"
+- id: formSubjectLbl
+  translation: "Assunto"
+- id: projectsPrev
+  translation: "Projectos anteriores"
+- id: projectsNext
+  translation: "Próximos projectos"
+- id: projectVisit
+  translation: "Visitar o site"
+- id: projectStack
+  translation: "Stack"
+- id: projectNext
+  translation: "Próximo projecto"
+- id: breadcrumbProjects
+  translation: "Projectos"
+- id: breadcrumbHome
+  translation: "Início"
+- id: breadcrumbLabel
+  translation: "Está em"
+- id: projectNav
+  translation: "Navegação entre projectos"
+- id: projectPagerNav
+  translation: "Mais projectos"
+- id: projectPrev
+  translation: "Projecto anterior"
+- id: notfoundTitle
+  translation: "Página não encontrada"
+- id: notfoundText
+  translation: "A página que procuravas não está aqui. Pode ter mudado de sítio ou o link pode estar errado."
+- id: notfoundHome
+  translation: "Voltar ao início"
+- id: lightboxLabel
+  translation: "Visualizador de imagens"
+- id: lightboxOpen
+  translation: "Abrir imagem em ecrã inteiro"
+- id: lightboxClose
+  translation: "Fechar"
+- id: lightboxPrev
+  translation: "Imagem anterior"
+- id: lightboxNext
+  translation: "Imagem seguinte"
+
+- id: projectYear
+  translation: "Ano"
+- id: projectLocation
+  translation: "Local"
+
+# Secret page
+- id: secretPage
+  translation: "Página"
+- id: secretArea
+  translation: "Área secreta"
+- id: secretClosePage
+  translation: "Fechar a página secreta e voltar ao início"
+- id: secretBackHome
+  translation: "Voltar ao início"
+- id: secretChangeOutfit
+  translation: "Mudar de roupa"
+- id: secretDollDescription
+  translation: "Evy com a roupa escolhida"
+- id: secretWardrobe
+  translation: "Guarda-roupa da Evy"
+- id: secretWardrobeDescription
+  translation: "Escolhe o penteado e a roupa."
+- id: secretCloseWardrobe
+  translation: "Fechar guarda-roupa"
+- id: secretHair
+  translation: "Penteados"
+- id: secretEyes
+  translation: "Olhos"
+- id: secretMouth
+  translation: "Bocas"
+- id: secretTops
+  translation: "Partes de cima e conjuntos"
+- id: secretBottoms
+  translation: "Saias e calças"
+- id: secretShoes
+  translation: "Calçado"
+- id: secretReset
+  translation: "Repor visual"
+- id: secretDone
+  translation: "Concluir"
+- id: secretFacts
+  translation: "Curiosidades"
+- id: secretBased
+  translation: "Onde vivo"
+- id: secretPersonality
+  translation: "Tipo de personalidade"
+- id: secretMediator
+  translation: "Mediadora"
+- id: secretFoods
+  translation: "Comidas favoritas"
+- id: secretLasagna
+  translation: "Lasanha"
+- id: secretDessert
+  translation: "Sobremesa favorita"
+- id: secretDrink
+  translation: "Bebida favorita"
+- id: secretWater
+  translation: "Água"
+- id: secretTeaCoffee
+  translation: "Chá ou café?"
+- id: secretTea
+  translation: "Chá"
+- id: secretGame
+  translation: "Jogo favorito"
+- id: secretDomCasmurro
+  translation: "Em Dom Casmurro"
+- id: secretTeamCapitu
+  translation: "Equipa Capitu"
+- id: secretPizza
+  translation: "Na pizza"
+- id: secretNoPineapple
+  translation: "Sem ananás"
+- id: secretThanks
+  translation: "Obrigada por me encontrares"
+- id: secretBackSite
+  translation: "Voltar ao site"
+- id: secretAnd
+  translation: "E"
+- id: secretOptionBrickCardigan
+  translation: "Casaco terracota"
+- id: secretOptionCollaredSweater
+  translation: "Camisola azul-marinho com gola branca"
+- id: secretOptionCreamKnit
+  translation: "Camisola creme"
+- id: secretOptionRoseShirt
+  translation: "Camisa rosa"
+- id: secretOptionSunflowerCardigan
+  translation: "Casaco de girassóis"
+- id: secretOptionDenimOveralls
+  translation: "Jardineiras com t-shirt"
+- id: secretOptionMoonSailor
+  translation: "Roupa da Sailor Moon"
+- id: secretOptionChocolateSkirt
+  translation: "Saia castanha pelo joelho"
+- id: secretOptionBlackMidiSkirt
+  translation: "Saia midi preta plissada"
+- id: secretOptionALineSkirt
+  translation: "Saia midi lavanda"
+- id: secretOptionWrapSkirt
+  translation: "Saia de trespasse terracota"
+- id: secretOptionMaxiSkirt
+  translation: "Saia comprida azul-marinho"
+- id: secretOptionBlueJeans
+  translation: "Calças de ganga azuis"
+- id: secretOptionCreamTrousers
+  translation: "Calças direitas creme"
+- id: secretOptionFlaredJeans
+  translation: "Calças à boca de sino castanho-escuras"
+- id: secretOptionLoose
+  translation: "Cabelo solto"
+- id: secretOptionBun
+  translation: "Carrapito"
+- id: secretOptionHeadband
+  translation: "Bandolete com laço"
+- id: secretOptionPigtails
+  translation: "Totós baixos"
+- id: secretOptionSneakers
+  translation: "Ténis"
+- id: secretOptionMaryJanes
+  translation: "Sapatos de presilha"
+- id: secretOptionSandals
+  translation: "Sandálias"
+- id: secretOptionBoots
+  translation: "Botas"
+- id: secretOptionFlipFlops
+  translation: "Chinelos"
+- id: secretOptionRoundedLash
+  translation: "Olhos arredondados com pestana curva"
+- id: secretOptionSoftSmile
+  translation: "Sorriso suave"
+
+- id: secretOptionBlackPumps
+  translation: "Sapatos de salto pretos"
+
+- id: secretOptionLongWaves
+  translation: "Cabelo ondulado pelos ombros"
+- id: secretOptionDoubleBun
+  translation: "Dois coques"

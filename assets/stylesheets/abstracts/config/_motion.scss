@@ -1,0 +1,11 @@
+/// Animation curves → `--ep-ease-<name>`.
+$easings: (
+  'spring': cubic-bezier(0.34, 1.56, 0.64, 1),
+);
+
+/// Transition durations → `ep.duration('<name>')`.
+$durations: (
+  'fast': 0.2s,
+  'medium': 0.35s,
+  'slow': 0.5s,
+);

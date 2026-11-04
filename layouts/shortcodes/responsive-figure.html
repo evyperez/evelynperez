@@ -1,0 +1,12 @@
+{{- $src := .Get "src" -}}
+{{- $mobile := imageConfig (printf "static%s" $src) -}}
+<figure class="content-figure">
+  <picture>
+    {{- with .Get "desktop" -}}
+      {{- $desktop := imageConfig (printf "static%s" .) -}}
+    <source media="(min-width: 40rem)" srcset="{{ . }}" width="{{ $desktop.Width }}" height="{{ $desktop.Height }}">
+    {{- end }}
+    <img class="content-figure__img" src="{{ $src }}" alt="{{ .Get "alt" }}" width="{{ $mobile.Width }}" height="{{ $mobile.Height }}" loading="lazy" decoding="async">
+  </picture>
+  {{ with .Get "caption" }}<figcaption class="content-figure__caption">{{ . }}</figcaption>{{ end }}
+</figure>

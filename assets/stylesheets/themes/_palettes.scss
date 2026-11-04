@@ -1,0 +1,56 @@
+@use 'sass:map';
+@use '../abstracts' as ep;
+
+// # Palette, use and scene output
+//
+// Default palette: `:root` / `[data-mode="dark"]`.
+// Others: `[data-theme="<name>"]` / `[data-theme="<name>"][data-mode="dark"]`.
+// Every `light` block is output before the `dark` ones so the cascade works.
+
+@function _selector($name, $mode) {
+  @if $name == ep.$default-palette and $mode == 'light' {
+    @return ':root';
+  }
+
+  @if $name == ep.$default-palette {
+    @return '[data-mode="dark"]';
+  }
+
+  @if $mode == 'light' {
+    @return '[data-theme="#{$name}"]';
+  }
+
+  @return '[data-theme="#{$name}"][data-mode="dark"]';
+}
+
+@each $mode in ('light', 'dark') {
+  @each $name, $palette in ep.$palettes {
+    #{_selector($name, $mode)} {
+      @each $color, $value in map.get($palette, $mode) {
+        --ep-#{$color}: #{$value};
+      }
+    }
+  }
+}
+
+:root {
+  @each $use, $color in ep.$uses {
+    --ep-#{$use}: var(--ep-#{$color});
+  }
+}
+
+// Each scene only shows in its own theme, so it uses that theme's selector.
+@each $mode in ('light', 'dark') {
+  @each $scene, $modes in ep.$scenes {
+    @if map.has-key($modes, $mode) {
+      #{_selector($scene, $mode)} {
+        @each $name, $value in map.get($modes, $mode) {
+          --ep-#{$scene}-#{$name}: #{$value};
+        }
+      }
+    }
+  }
+}
+
+html { color-scheme: light; }
+html[data-mode="dark"] { color-scheme: dark; }

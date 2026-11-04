@@ -1,0 +1,180 @@
+@use '../abstracts' as ep;
+
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: ep.space('20') ep.layout('container-padding');
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  transition: background ep.duration('medium') ease, backdrop-filter ep.duration('medium') ease;
+
+  &.scrolled {
+    background: color-mix(in srgb, ep.palette('background') 92%, transparent);
+    backdrop-filter: blur(12px);
+  }
+}
+
+.nav__logo {
+  font-family: ep.font('display');
+  font-weight: ep.weight('bold');
+  font-size: ep.step(2);
+  color: ep.palette('primary');
+  letter-spacing: -0.02em;
+}
+
+// Mobile: dropdown panel under the bar; desktop: centered links
+.nav__links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: ep.space('8') 0 ep.space('16');
+  background: color-mix(in srgb, ep.palette('background') 96%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: ep.palette('shadow');
+
+  a {
+    font-size: ep.step(-1);
+    font-weight: ep.weight('medium');
+    color: ep.palette('heading');
+
+    &:hover {
+      color: ep.palette('primary');
+    }
+  }
+
+  li a {
+    display: block;
+    padding: ep.space('14') ep.layout('container-padding');
+    font-size: ep.step(0);
+  }
+
+  @include ep.from('lg') {
+    display: flex;
+    top: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    flex-direction: row;
+    align-items: center;
+    gap: ep.space('32');
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+
+    li a {
+      display: inline;
+      padding: 0;
+      font-size: ep.step(-1);
+    }
+  }
+}
+
+#nav.menu-open .nav__links {
+  display: flex;
+}
+
+// Actions grouped on the right: theme · dark mode · language · hamburger
+// Own background to keep contrast over the decorative scenes (WCAG 1.4.11)
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: ep.space('6');
+  padding: ep.space('4') ep.space('6');
+  border-radius: ep.radius('full');
+  background: color-mix(in srgb, ep.palette('background') 78%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+// ── Hamburger (tablet and below) ───────────────
+
+.nav__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: ep.palette('heading');
+    transition: transform ep.duration('fast') ease, opacity ep.duration('fast') ease;
+  }
+
+  &[aria-expanded="true"] {
+    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+
+  @include ep.from('lg') {
+    display: none;
+  }
+}
+
+// Dots button: no hover bg since it already shows colors
+.nav__theme-dots {
+  opacity: 1 !important;
+  &:hover { background: transparent !important; }
+}
+
+.nav__toggle-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: ep.palette('heading');
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity ep.duration('fast') ease, background ep.duration('fast') ease;
+
+  &:hover {
+    opacity: 1;
+    background: ep.palette('highlight');
+  }
+}
+
+// Dark mode button shows the moon in light mode and the sun in dark mode.
+.icon-sun,
+[data-mode="dark"] .icon-moon { display: none; }
+[data-mode="dark"] .icon-sun { display: inline; }
+
+@include ep.below('xs') {
+  #nav {
+    gap: ep.space('8');
+  }
+
+  .nav__logo {
+    flex-shrink: 0;
+    font-size: clamp(#{ep.step(0)}, 4.8vw, #{ep.step(2)});
+    white-space: nowrap;
+  }
+
+  .nav__actions {
+    gap: ep.space('4');
+  }
+}

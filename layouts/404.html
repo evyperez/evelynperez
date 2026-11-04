@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="article-page not-found">
+  <div class="container not-found__inner">
+    <p class="section-header__label">404</p>
+    <h1 class="section-header__title">{{ i18n "notfoundTitle" }}</h1>
+    <p class="not-found__text">{{ i18n "notfoundText" }}</p>
+    <ul class="not-found__links">
+      <li><a href="{{ "" | relLangURL }}">{{ i18n "notfoundHome" }}</a></li>
+      <li><a href='{{ "" | relLangURL }}#projects'>{{ i18n "navWork" }}</a></li>
+      <li><a href='{{ "blog" | relLangURL }}'>{{ i18n "navBlog" }}</a></li>
+      <li><a href='{{ "" | relLangURL }}#contact'>{{ i18n "navContact" }}</a></li>
+    </ul>
+  </div>
+</section>
+{{ end }}

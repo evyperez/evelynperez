@@ -1,0 +1,113 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
+@use 'config' as *;
+
+// Every color defined in any palette, plus the uses.
+$_palette-keys: ();
+
+@each $name, $palette in $palettes {
+  @each $mode, $colors in $palette {
+    $_palette-keys: map.merge($_palette-keys, $colors);
+  }
+}
+
+$_palette-keys: map.merge($_palette-keys, $uses);
+
+$_scene-keys: ();
+
+@each $scene, $modes in $scenes {
+  $keys: ();
+
+  @each $mode, $colors in $modes {
+    $keys: map.merge($keys, $colors);
+  }
+
+  $_scene-keys: map.set($_scene-keys, $scene, $keys);
+}
+
+@function _token($map, $key, $prefix, $label) {
+  @if not map.has-key($map, $key) {
+    @error 'Token `#{$key}` does not exist in #{$label}.';
+  }
+
+  @return string.unquote('var(--ep-#{$prefix}#{$key})');
+}
+
+/// Color from the active palette (or a use).
+///
+/// @example scss
+///   a { color: ep.palette('primary'); }   // → var(--ep-primary)
+///   .btn { background: ep.palette('button'); }
+@function palette($name) {
+  @return _token($_palette-keys, $name, '', 'palettes/uses');
+}
+
+/// Color from a hero illustration.
+///
+/// @example scss
+///   .tejo-scene__boat { fill: ep.scene('tejo', 'boat'); } // → var(--ep-tejo-boat)
+@function scene($scene, $name) {
+  @if not map.has-key($_scene-keys, $scene) {
+    @error 'Scene `#{$scene}` does not exist.';
+  }
+
+  @return _token(map.get($_scene-keys, $scene), $name, '#{$scene}-', 'scene `#{$scene}`');
+}
+
+@function font($name) {
+  @return _token($font-families, $name, 'font-', '$font-families');
+}
+
+@function _get($map, $key, $label) {
+  @if not map.has-key($map, $key) {
+    @error '`#{$key}` does not exist in #{$label}.';
+  }
+
+  @return map.get($map, $key);
+}
+
+/// Font size from the modular scale.
+///
+/// @example scss
+///   .card__title { font-size: ep.step(2); } // base × ratio²
+@function step($n) {
+  $size: map.get($modularscale, 'base') * math.pow(map.get($modularscale, 'ratio'), $n);
+
+  @return math.div(math.round($size * 10000), 10000);
+}
+
+@function weight($name) {
+  @return _get($font-weights, $name, '$font-weights');
+}
+
+@function leading($name) {
+  @return _get($leadings, $name, '$leadings');
+}
+
+@function duration($name) {
+  @return _get($durations, $name, '$durations');
+}
+
+/// Spacing from `$spacing`, e.g. `ep.space('16')` or `ep.space('-8')`.
+@function space($key) {
+  $key: '#{$key}';
+
+  @if string.index($key, '-') == 1 {
+    @return -1 * _get($spacing, string.slice($key, 2), '$spacing');
+  }
+
+  @return _get($spacing, $key, '$spacing');
+}
+
+@function radius($name) {
+  @return _token($radius-sizes, $name, 'radius-', '$radius-sizes');
+}
+
+@function layout($name) {
+  @return _token($layout, $name, '', '$layout');
+}
+
+@function ease($name) {
+  @return _token($easings, $name, 'ease-', '$easings');
+}

@@ -1,0 +1,13 @@
+{{- /* Full-screen image viewer for articles and projects. The JS in main.js wires each .content-figure to it. */ -}}
+<dialog class="lightbox" id="lightbox" aria-label="{{ i18n "lightboxLabel" }}" data-open-label="{{ i18n "lightboxOpen" }}">
+  <div class="lightbox__bar">
+    <p class="lightbox__count" aria-live="polite"></p>
+    <button type="button" class="lightbox__btn lightbox__close" aria-label="{{ i18n "lightboxClose" }}">✕</button>
+  </div>
+  <div class="lightbox__stage" tabindex="-1">
+    <img class="lightbox__img" alt="">
+  </div>
+  <p class="lightbox__caption"></p>
+  <button type="button" class="lightbox__btn lightbox__nav lightbox__nav--prev" aria-label="{{ i18n "lightboxPrev" }}">←</button>
+  <button type="button" class="lightbox__btn lightbox__nav lightbox__nav--next" aria-label="{{ i18n "lightboxNext" }}">→</button>
+</dialog>

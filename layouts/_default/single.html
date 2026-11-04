@@ -1,0 +1,60 @@
+{{ define "main" }}
+<div class="article-page">
+  <div class="article-shell">
+    <div class="article-container">
+      {{ $category := "" }}
+      {{ with .Params.categories }}{{ $category = index . 0 }}{{ end }}
+
+      <header class="article__header">
+        <div class="article__dateline">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>
+          <span class="article__eyebrow-sep">·</span>
+          <span>{{ .ReadingTime }} {{ i18n "blogMin" | lower }}</span>
+        </div>
+        <h1 class="article__title">{{ .Title }}</h1>
+        {{ with .Description }}<p class="article__subtitle">{{ . }}</p>{{ end }}
+        <hr class="article__divider">
+        <div class="article__byline">
+          <a href='{{ "blog" | relLangURL }}' class="article__back">← {{ i18n "blogBack" }}</a>
+          {{ if $category }}
+          <span class="article__eyebrow-dot"></span>
+          <a class="article__category" href='{{ printf "categories/%s" ($category | urlize) | relLangURL }}'>{{ $category }}</a>
+          {{ end }}
+          {{ with .Params.tags }}
+          {{ range . }}<a class="tag" href='{{ printf "tags/%s" (. | urlize) | relLangURL }}'>{{ . }}</a>{{ end }}
+          {{ end }}
+        </div>
+      </header>
+
+      {{ if .Params.image }}
+        {{ partial "picture.html" (dict "src" .Params.image "alt" (.Params.imageAlt | default .Title) "class" "article__hero-img" "sizes" "(min-width: 52rem) 48.75rem, calc(100vw - 2.5rem)" "width" .Params.imageWidth "height" .Params.imageHeight) }}
+      {{ end }}
+
+      <div class="article__body">
+        {{ .Content }}
+      </div>
+
+      {{ partial "article-author.html" . }}
+
+      <footer class="article__footer">
+        <a href='{{ "blog" | relLangURL }}' class="btn btn--outline">← {{ i18n "blogBack" }}</a>
+      </footer>
+    </div>
+
+    {{ $related := first 3 ((where (where site.RegularPages "Type" "blog") "Permalink" "!=" .Permalink).ByDate.Reverse) }}
+    {{ if gt (len $related) 0 }}
+      <section class="article-related">
+        <div class="article-related__head">
+          <h2 class="article-related__title">{{ i18n "blogRelatedTitle" }}</h2>
+          <a href='{{ "blog" | relLangURL }}' class="article-related__all">{{ i18n "blogAllPosts" }}</a>
+        </div>
+        <div class="blog-grid">
+          {{ range $related }}
+            {{ partial "post-card.html" . }}
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

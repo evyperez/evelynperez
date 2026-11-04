@@ -1,0 +1,67 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'config' as *;
+@use 'functions' as *;
+
+@function _breakpoint($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'Breakpoint `#{$name}` does not exist.';
+  }
+
+  @return map.get($breakpoints, $name);
+}
+
+/// Screens up to the breakpoint (inclusive).
+@mixin below($name) {
+  @media (max-width: _breakpoint($name)) { @content; }
+}
+
+/// Screens wider than the breakpoint.
+@mixin from($name) {
+  @media (min-width: _breakpoint($name) + 1px) { @content; }
+}
+
+/// Hidden on screen, still read by screen readers.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/// Keyboard focus ring. Used by the global focus style and by cards
+/// that ring the whole card instead of the inner link.
+@mixin focus-ring($offset: 3px, $radius: null) {
+  outline: 2px solid palette('focus');
+  outline-offset: $offset;
+
+  @if $radius {
+    border-radius: $radius;
+  }
+}
+
+/// Small uppercase mono label (dates, meta, eyebrows).
+@mixin eyebrow {
+  font-family: font('mono');
+  font-size: step(-3);
+  font-weight: weight('medium');
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/// Display-font title from `$title-sizes`.
+@mixin title($size, $weight: 'bold') {
+  $t: map.get($title-sizes, $size);
+
+  @if not $t {
+    @error 'Title size `#{$size}` does not exist in $title-sizes.';
+  }
+
+  font-family: font('display');
+  font-weight: weight($weight);
+  font-size: clamp(#{step(map.get($t, min))}, #{map.get($t, fluid)}, #{step(map.get($t, max))});
+  line-height: map.get($t, line-height);
+  letter-spacing: map.get($t, letter-spacing);
+}

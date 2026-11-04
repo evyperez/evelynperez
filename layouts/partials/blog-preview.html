@@ -1,0 +1,21 @@
+<section id="blog">
+  <div class="container">
+    <div class="blog__header-row">
+      <div class="section-header">
+        <p class="blog-eyebrow">{{ i18n "blogLabel" }}</p>
+        <h2 class="section-header__title">{{ i18n "blogTitle" }} <em>{{ i18n "blogTitleHighlight" | lower }}</em></h2>
+      </div>
+    </div>
+
+    <div class="blog-grid">
+      {{ $posts := first 3 ((where site.RegularPages "Type" "blog").ByDate.Reverse) }}
+      {{ range $posts }}
+        {{ partial "post-card.html" . }}
+      {{ end }}
+    </div>
+
+    <div class="blog__footer-row">
+      <a href='{{ "blog" | relLangURL }}' class="btn btn--outline">{{ i18n "blogAllPosts" }}</a>
+    </div>
+  </div>
+</section>

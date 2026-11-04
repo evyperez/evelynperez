@@ -1,0 +1,74 @@
+@use '../abstracts' as ep;
+
+#testimonials {
+  background: ep.palette('highlight');
+
+  .section-header__label {
+    color: ep.palette('secondary');
+  }
+
+  .section-header__title {
+    color: ep.palette('heading');
+
+    em {
+      color: ep.palette('primary');
+    }
+  }
+}
+
+// No card: the quote sits directly on the section background.
+
+.testimonial-slide {
+  height: 100%;
+  max-width: 46rem;
+  margin: 0;
+  padding: ep.space('4') ep.space('4') 0;
+}
+
+// Highlighted excerpt: what a recruiter reads first.
+.testimonial-slide__highlight {
+  @include ep.title('l', 'regular');
+
+  color: ep.palette('heading');
+  margin-bottom: ep.space('16');
+}
+
+// Full testimonial, smaller.
+.testimonial-slide__quote p {
+  font-size: ep.step(0);
+  line-height: ep.leading('relaxed');
+  color: ep.palette('text-muted');
+  margin-bottom: ep.space('28');
+}
+
+.testimonial-slide__author {
+  display: flex;
+  align-items: center;
+  gap: ep.space('12');
+
+  &::before {
+    content: "";
+    width: 1.5rem;
+    height: 1px;
+    background: ep.palette('secondary');
+  }
+}
+
+.testimonial-slide__name {
+  display: inline-block;
+  font-style: normal;
+  font-size: ep.step(-1);
+  font-weight: ep.weight('semi-bold');
+  color: ep.palette('primary');
+  text-decoration: none;
+
+  &[href]:hover {
+    text-decoration: underline;
+  }
+}
+
+.testimonial-slide__role {
+  font-size: ep.step(-2);
+  color: ep.palette('text-muted');
+  margin-top: ep.space('2');
+}

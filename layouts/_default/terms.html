@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="blog-list">
+  <div class="blog-list__container">
+
+    <header class="blog-list__header">
+      <h1 class="blog-list__title">{{ .Title }}</h1>
+    </header>
+
+    <div class="term-cloud">
+      {{ range .Data.Terms.Alphabetical }}
+        <a class="tag term-cloud__item" href="{{ .Page.RelPermalink }}">
+          {{ .Page.Title }} <span class="term-cloud__count">{{ .Count }}</span>
+        </a>
+      {{ end }}
+    </div>
+
+  </div>
+</div>
+{{ end }}

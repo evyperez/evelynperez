@@ -1,0 +1,26 @@
+{{- /* Project card: logo (or image) on a solid color, name and main technologies.
+     Receives (dict "page" <project page> "level" <heading level, default 3>). */ -}}
+{{- $level := .level | default 3 }}
+{{- with .page }}
+{{- $logo := printf "images/logos/%s.svg" .File.ContentBaseName }}
+{{- $logoPng := printf "images/logos/%s.png" .File.ContentBaseName }}
+<a class="project-card" href="{{ .RelPermalink }}">
+  <div class="project-card__media" style="--thumb-bg: {{ .Params.thumbBg | default "var(--ep-highlight)" | safeCSS }}">
+    {{- if fileExists (printf "static/%s" $logo) }}
+    <img class="project-card__logo" src="/{{ $logo }}" alt="" loading="lazy">
+    {{- else if fileExists (printf "static/%s" $logoPng) }}
+    {{ partial "picture.html" (dict "src" (printf "/%s" $logoPng) "alt" "" "class" "project-card__logo" "loading" "lazy" "sizes" "(min-width: 1000px) 12rem, 50vw") }}
+    {{- else if .Params.image }}
+    {{ partial "picture.html" (dict "src" .Params.image "alt" "" "class" "project-card__img" "loading" "lazy" "sizes" "(min-width: 1000px) 24rem, (min-width: 640px) 50vw, 100vw") }}
+    {{- else }}
+    <span class="project-card__wordmark" aria-hidden="true">{{ .Title }}</span>
+    {{- end }}
+  </div>
+  <div class="project-card__body">
+    <h{{ $level }} class="project-card__name">{{ .Title }}</h{{ $level }}>
+    {{- with .Params.stack }}
+    <p class="project-card__meta">{{ delimit . ", " }}</p>
+    {{- end }}
+  </div>
+</a>
+{{- end }}

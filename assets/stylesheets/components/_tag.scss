@@ -1,0 +1,14 @@
+@use '../abstracts' as ep;
+
+.tag {
+  display: inline-block;
+  padding: ep.space('4') ep.space('10');
+  border-radius: ep.radius('full');
+  font-family: ep.font('body');
+  font-size: ep.step(-3);
+  font-weight: ep.weight('medium');
+  letter-spacing: 0.04em;
+  background: ep.palette('highlight');
+  color: ep.palette('primary');
+}
+

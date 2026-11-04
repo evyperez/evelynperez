@@ -1,0 +1,32 @@
+/// # Forest scene
+/// Paper mountains and pine trees (`.forest-scene`).
+$colors: (
+  'light': (
+    // Sky and mountains: soft greens and browns, low contrast
+    'sky-top':          #F2F6EC,
+    'sky-bottom':       #E4EBD8,
+    'ridge-1':          #DFE8D5,
+    'ridge-2':          #CFD5B0,
+    'ridge-3':          #C0B18C,
+
+    // Pine trees (canopy, canopy shade, trunk)
+    'pine':             #567844,
+    'pine-shade':       #496B39,
+    'pine-dark':        #3E5A39,
+    'pine-dark-shade':  #33502D,
+    'pine-light':       #6E8B4E,
+    'pine-light-shade': #5F7C43,
+    'pine-pale':        #88A35D,
+    'pine-pale-shade':  #7A9454,
+    'trunk':            #5B4327,
+    'trunk-light':      #634A2C,
+    'trunk-pale':       #6E5334,
+  ),
+  'dark': (
+    'sky-top':          #3A2419,
+    'sky-bottom':       #1C120E,
+    'ridge-1':          #7A5B46,
+    'ridge-2':          #955D39,
+    'ridge-3':          #693421,
+  ),
+);

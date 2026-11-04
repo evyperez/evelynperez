@@ -1,0 +1,43 @@
+<section id="contact">
+  <div class="container contact__layout">
+
+    <div class="contact__intro">
+      <h2 class="contact__title">{{ i18n "contactTitle" }}</h2>
+      {{- $mail := printf `<a href="mailto:%s">%s</a>` .Site.Params.email .Site.Params.email }}
+      <p class="contact__sub">{{ i18n "contactSub" (dict "email" $mail) | safeHTML }}</p>
+      {{- with .Site.Params.calendar }}
+      <p class="contact__cal">{{ i18n "contactCalQ" }} <a href="{{ . }}" target="_blank" rel="noopener">{{ i18n "contactCalLink" | lower }} ↗</a></p>
+      {{- end }}
+    </div>
+
+    <form id="contact-form" class="contact__form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+      <input type="hidden" name="form-name" value="contact">
+      <p hidden>
+        <label>{{ i18n "formHoneypot" }}: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <div class="form-field">
+        <label class="form-label" for="f-name">{{ i18n "formNameLbl" }}</label>
+        <input class="form-input" id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="f-email">{{ i18n "formEmailLbl" }}</label>
+        <input class="form-input" id="f-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="f-subject">{{ i18n "formSubjectLbl" }}</label>
+        <input class="form-input" id="f-subject" name="subject" type="text" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="f-msg">{{ i18n "formMsgLbl" }}</label>
+        <textarea class="form-input form-textarea" id="f-msg" name="message" rows="4" required></textarea>
+      </div>
+
+      <button type="submit" class="contact__submit">{{ i18n "formSubmit" }}</button>
+      <p class="contact__status" role="status" aria-live="polite" data-sent="{{ i18n "formSent" }}" data-error="{{ i18n "formError" }}"></p>
+    </form>
+
+    {{ partial "contact-deco.html" . }}
+
+  </div>
+</section>

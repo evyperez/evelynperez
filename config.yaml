@@ -1,0 +1,96 @@
+baseURL: 'https://evelyn-perez.com/'
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+disableKinds:
+  - RSS
+
+sitemap:
+  changeFreq: monthly
+
+# Posts per page on the blog list
+pagination:
+  pagerSize: 3
+
+taxonomies:
+  tag: tags
+  category: categories
+
+enableRobotsTXT: true
+disableFastRender: true
+disableHugoGeneratorInject: true
+removePathAccents: true
+
+languages:
+  en:
+    contentDir: content/en
+    languageName: 'English'
+    languageCode: 'en-US'
+    title: 'Evelyn Perez · Frontend Engineer & Designer'
+    weight: 1
+    params:
+      description: "Frontend engineer and designer in Lisbon. Design systems, component libraries and accessible interfaces in Angular, React and web components."
+      shortName: 'EN'
+      flag: '🇺🇸'
+  pt-pt:
+    contentDir: content/pt-pt
+    languageName: 'Português (PT)'
+    languageCode: 'pt-PT'
+    title: 'Evelyn Perez · Engenheira Frontend & Designer'
+    weight: 2
+    params:
+      description: "Engenheira frontend e designer em Lisboa. Design systems, bibliotecas de componentes e interfaces acessíveis em Angular, React e web components."
+      shortName: 'PT'
+      flag: '🇵🇹'
+  pt-br:
+    contentDir: content/pt-br
+    languageName: 'Português (BR)'
+    languageCode: 'pt-BR'
+    title: 'Evelyn Perez · Engenheira Frontend & Designer'
+    weight: 3
+    params:
+      description: "Engenheira frontend e designer em Lisboa. Design systems, bibliotecas de componentes e interfaces acessíveis em Angular, React e web components."
+      shortName: 'BR'
+      flag: '🇧🇷'
+  es:
+    contentDir: content/es
+    languageName: 'Español'
+    languageCode: 'es-ES'
+    title: 'Evelyn Perez · Ingeniería Frontend & Diseño'
+    weight: 4
+    params:
+      description: "Ingeniera frontend y diseñadora en Lisboa. Design systems, librerías de componentes e interfaces accesibles en Angular, React y web components."
+      shortName: 'ES'
+      flag: '🇪🇸'
+
+params:
+  author: 'Evelyn Perez'
+  description: "Frontend engineer and designer in Lisbon. Design systems, component libraries and accessible interfaces in Angular, React and web components."
+  # Default share image (1200×630). Put the file in static/images/ and uncomment:
+  # image: '/images/og-default.jpg'
+  email: 'hello@evelyn-perez.com'
+  calendar: 'https://cal.com/evelyn-perez'
+  location: 'Lisbon, Portugal'
+  social:
+    github: 'https://github.com/evyperez'
+    linkedin: 'https://linkedin.com/in/evyperez'
+
+markup:
+  goldmark:
+    parser:
+      wrapStandAloneImageWithinParagraph: false
+    renderer:
+      unsafe: true
+
+# Images: static/images is also mounted as a Hugo resource,
+# to generate smaller and WebP versions (see layouts/partials/picture.html).
+# /images/... paths keep working as before.
+module:
+  mounts:
+    - source: assets
+      target: assets
+    - source: static/images
+      target: assets/images
+
+imaging:
+  quality: 80
+  resampleFilter: Lanczos

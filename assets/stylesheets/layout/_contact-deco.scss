@@ -1,0 +1,30 @@
+@use '../abstracts' as ep;
+
+.contact__deco {
+  max-width: ep.layout('content-narrow');
+  margin-top: ep.space('32');
+  color: ep.palette('text-muted');
+  pointer-events: none;
+
+  .deco {
+    display: none;
+    width: 100%;
+    height: auto;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+:root:not([data-theme]) .contact__deco .deco--forest,
+[data-theme="forest"] .contact__deco .deco--forest,
+[data-theme="tejo"] .contact__deco .deco--tejo,
+[data-theme="lighthouse"] .contact__deco .deco--lighthouse,
+[data-theme="flowers"] .contact__deco .deco--flowers {
+  display: block;
+}
+
+[data-mode="dark"] .contact__deco .cd-rays {
+  display: none;
+}

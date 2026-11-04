@@ -1,0 +1,724 @@
+@use '../abstracts' as ep;
+
+.hero {
+  position: relative;
+  height: 94svh;
+  min-height: 760px;
+  max-height: 1060px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+// Mobile: the fixed height is not enough for the text on narrow screens —
+// let the section grow with its content so the text is never squeezed
+// or overlapping the background illustrations.
+@include ep.below('md') {
+  .hero {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-block: ep.space('104') ep.space('48');
+  }
+}
+
+.hero__shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+// Subtle paper grain across theme scenes.
+.hero__shapes::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%3E%3Cfilter%20id='p'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.75'%20numOctaves='4'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type='linear'%20slope='1.7'%20intercept='-0.35'/%3E%3CfeFuncG%20type='linear'%20slope='1.7'%20intercept='-0.35'/%3E%3CfeFuncB%20type='linear'%20slope='1.7'%20intercept='-0.35'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23p)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: soft-light;
+  opacity: 0.18;
+}
+
+[data-mode="dark"] .hero__shapes::after { opacity: 0.08; }
+
+// Paper texture and shadow preserve the original vector edges.
+.forest-scene__ridge--1,
+.forest-scene__ridge--2,
+.pine,
+.wave-svg--mid,
+.wave-svg--front,
+.sr-grass,
+.sr-grass-shadow {
+  filter: url(#paper-felt);
+}
+
+// Fine details use the lighter paper texture.
+.sr-lh,
+.sr-cottage,
+.sky-cloud {
+  filter: url(#paper-soft);
+}
+
+// Paper pine trees — layered cut-outs. <use> only inherits color through variables,
+// so each variant sets --pa (canopy), --pb (canopy shade) and --pt (trunk).
+.pine        { --pa: #{ep.scene('forest', 'pine')}; --pb: #{ep.scene('forest', 'pine-shade')}; --pt: #{ep.scene('forest', 'trunk')}; }
+.pine--dark  { --pa: #{ep.scene('forest', 'pine-dark')}; --pb: #{ep.scene('forest', 'pine-dark-shade')}; }
+.pine--light { --pa: #{ep.scene('forest', 'pine-light')}; --pb: #{ep.scene('forest', 'pine-light-shade')}; --pt: #{ep.scene('forest', 'trunk-light')}; }
+.pine--pale  { --pa: #{ep.scene('forest', 'pine-pale')}; --pb: #{ep.scene('forest', 'pine-pale-shade')}; --pt: #{ep.scene('forest', 'trunk-pale')}; }
+.pine__a     { fill: var(--pa); }
+.pine__b     { fill: var(--pb); }
+.pine__trunk { fill: var(--pt); }
+
+.shapes {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.shapes--forest { display: block; }
+
+[data-theme="tejo"] {
+  .shapes--forest,
+  .shapes--flowers { display: none; }
+  .shapes--tejo   { display: block; }
+}
+
+[data-theme="lighthouse"] {
+  .shapes--forest,
+  .shapes--flowers { display: none; }
+  .shapes--lighthouse {
+    display: block;
+    background: ep.scene('lighthouse', 'background');
+  }
+}
+
+.sr-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+// Mobile: the section now grows with the text (see .hero above).
+// Without this limit, "slice" kept enlarging the lighthouse to fill
+// the whole height. Pins the illustration to a band at the bottom.
+@include ep.below('md') {
+  .sr-scene {
+    top: auto;
+    height: min(58vh, 480px);
+  }
+}
+
+.sr-grass         { fill: ep.scene('lighthouse', 'grass'); }
+.sr-grass-shadow  { fill: ep.scene('lighthouse', 'grass-shadow'); }
+
+
+.sr-celestial {
+  display: none;
+  position: absolute;
+  top: clamp(ep.space('120'), 15vh, ep.space('168'));
+  right: clamp(ep.space('64'), 9vw, ep.space('104'));
+  z-index: 1;
+  width: min(14vw, 128px);
+  pointer-events: none;
+}
+
+[data-theme="lighthouse"] .sr-celestial { display: block; }
+
+.sr-celestial__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sr-celestial-body {
+  transform-origin: 60px 60px;
+  animation: sun-bob 5s ease-in-out infinite;
+}
+
+.sr-sun {
+  opacity: 1;
+}
+
+.sr-sun-rays { fill: ep.scene('lighthouse', 'sun-ray'); }
+
+.sr-sun-disk { fill: ep.scene('lighthouse', 'sun'); }
+
+.sr-moon-disk {
+  fill: ep.scene('lighthouse', 'moon');
+  opacity: 0;
+}
+
+[data-mode="dark"] .sr-sun       { opacity: 0; }
+[data-mode="dark"] .sr-moon-disk { opacity: 1; }
+
+.sr-lh-stripe--light { fill: ep.scene('lighthouse', 'tower-light'); }
+.sr-lh-stripe--red   { fill: ep.scene('lighthouse', 'tower-red'); }
+.sr-lh-shade      { fill: #000; opacity: 0.08; }
+.sr-lh-window     { fill: ep.scene('lighthouse', 'tower-window'); }
+.sr-lh-sill       { fill: ep.scene('lighthouse', 'tower-gallery'); }
+.sr-lh-gallery    { fill: ep.scene('lighthouse', 'tower-gallery'); }
+.sr-lh-rail       { stroke: ep.scene('lighthouse', 'tower-rail'); }
+.sr-lh-lantern    { fill: ep.scene('lighthouse', 'lantern'); }
+.sr-lh-roof       { fill: ep.scene('lighthouse', 'tower-roof'); }
+.sr-lh-roof-shade { fill: ep.scene('lighthouse', 'tower-roof'); filter: brightness(0.82); }
+.sr-lh-finial     { fill: ep.scene('lighthouse', 'tower-rail'); }
+.sr-lh-beam       { opacity: 0; }
+.sr-lh-beam-stop  { stop-color: ep.scene('lighthouse', 'beam'); }
+.sr-lh-glow       { display: none; }
+
+.sr-cottage-wall      { fill: ep.scene('lighthouse', 'cottage'); }
+.sr-cottage-roof      { fill: ep.scene('lighthouse', 'cottage-roof'); }
+.sr-cottage-chimney   { fill: ep.scene('lighthouse', 'cottage-roof'); }
+.sr-cottage-door      { fill: ep.scene('lighthouse', 'cottage-door'); }
+.sr-cottage-win-frame { fill: ep.scene('lighthouse', 'cottage-door'); }
+.sr-cottage-glass     { fill: ep.scene('lighthouse', 'cottage-window'); }
+.sr-cottage-mullion   { stroke: ep.scene('lighthouse', 'cottage-door'); }
+
+[data-mode="dark"] .sr-lh-beam    { opacity: 0.42; }
+
+// In dark mode clouds stay fully opaque (only the color changes, duller/greyer)
+// — with transparency the stars showed "through" them.
+[data-theme="lighthouse"] .sky-cloud {
+  fill: ep.scene('lighthouse', 'cloud');
+  opacity: 1;
+}
+
+[data-theme="lighthouse"] .sky-cloud--soft {
+  fill: ep.scene('lighthouse', 'cloud-soft');
+  opacity: 1;
+}
+
+[data-theme="flowers"] {
+  .shapes--forest  { display: none; }
+  // Note: no position:relative here — overriding the base .shapes
+  // position:absolute collapsed the height to 0 and overflow:hidden
+  // hid the whole scene.
+  .shapes--flowers {
+    display: block;
+    background: ep.scene('flowers', 'background');
+    overflow: hidden;
+  }
+
+  .shapes--flowers::before,
+  .shapes--flowers::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .shapes--flowers::before {
+    background: ep.scene('flowers', 'paper-glow');
+    opacity: 0.9;
+  }
+
+  .shapes--flowers::after {
+    background: ep.scene('flowers', 'paper-grain');
+    opacity: 0.55;
+  }
+}
+
+.flowers-scene {
+  position: absolute;
+  inset: -2% -6% -1% -6%;
+  width: 112%;
+  height: 104%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.flowers-scene__hill-far { fill: ep.scene('flowers', 'hill-far'); }
+.flowers-scene__hill-mid { fill: ep.scene('flowers', 'hill-mid'); }
+.flowers-scene__ground   { fill: ep.scene('flowers', 'ground'); }
+
+
+.windmill__blade-fill   { fill: ep.scene('flowers', 'windmill-blade'); }
+.windmill__blade-mesh   { stroke: ep.scene('flowers', 'windmill-line'); stroke-width: 1.6; }
+.windmill__blade-outline { fill: none; stroke: ep.scene('flowers', 'windmill-line'); stroke-width: 3; stroke-linejoin: round; }
+.windmill__tower-shadow { fill: rgba(60, 45, 25, 0.2); }
+.windmill__tower        { fill: ep.scene('flowers', 'windmill-tower'); }
+.windmill__roof-shadow  { fill: rgba(60, 45, 25, 0.25); }
+.windmill__roof         { fill: ep.scene('flowers', 'windmill-roof'); }
+.windmill__hub          { fill: ep.scene('flowers', 'windmill-hub'); }
+.windmill__window       { fill: ep.scene('flowers', 'windmill-window'); }
+
+.windmill__rotor {
+  transform-origin: 0px 0px;
+  animation: windmill-spin 26s linear infinite;
+}
+
+@keyframes windmill-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+// Flowers: keep the logo readable over the garden
+[data-theme="flowers"] .nav__logo { text-shadow: 0 1px 8px rgba(90, 50, 20, 0.3); }
+[data-theme="flowers"][data-mode="dark"] .nav__logo { text-shadow: 0 1px 12px rgba(10, 6, 2, 0.85), 0 0 2px rgba(10, 6, 2, 0.6); }
+[data-theme="tejo"] .hero__shapes::after { opacity: 0.16; }
+[data-theme="tejo"][data-mode="dark"] .hero__shapes::after { opacity: 0.12; }
+
+.forest-scene {
+  position: absolute;
+  inset: -2% -6% -1% -6%;
+  width: 112%;
+  height: 104%;
+}
+
+.forest-scene__sky-top    { stop-color: ep.scene('forest', 'sky-top'); }
+.forest-scene__sky-bottom { stop-color: ep.scene('forest', 'sky-bottom'); }
+.forest-scene__ridge--1   { fill: ep.scene('forest', 'ridge-1'); }
+.forest-scene__ridge--2   { fill: color-mix(in srgb, ep.scene('forest', 'ridge-3') 88%, ep.scene('forest', 'ridge-2')); }
+
+.forest-scene { z-index: 0; }
+
+.forest-scene__trees {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.forest-scene__trees--front { animation: tree-breeze-front 16s ease-in-out infinite; }
+.forest-scene__trees--back  { animation: tree-breeze-back 22s ease-in-out infinite; }
+
+.tejo-scene {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  width: min(64vw, 920px);
+  height: auto;
+  pointer-events: none;
+}
+
+@include ep.below('md') {
+  .tejo-scene {
+    width: 120vw;
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+}
+
+.tejo-scene__hill-front { fill: ep.scene('tejo', 'hill'); }
+.tejo-scene__statue      { fill: ep.scene('tejo', 'statue'); }
+.tejo-scene__lights      { display: none; }
+.tejo-scene__bridge      { fill: ep.scene('tejo', 'bridge'); }
+.tejo-scene__dock        { fill: ep.scene('tejo', 'dock'); }
+.tejo-scene__boat        { fill: ep.scene('tejo', 'boat'); }
+
+[data-theme="tejo"][data-mode="dark"] {
+  .tejo-scene__lights       { display: block; }
+  .tejo-scene__bridge-glow  { fill: ep.scene('tejo', 'bridge-glow'); opacity: 0.55; filter: url(#tejo-scene-glow); }
+}
+
+[data-theme="tejo"] .wave-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  min-width: 120rem;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+[data-theme="tejo"] .shapes--tejo {
+  background: ep.scene('tejo', 'sky');
+}
+
+.wave-svg--mid {
+  bottom: 0.7%;
+  height: 6.5%;
+  animation: wave-drift 70s linear infinite;
+  z-index: 1;
+}
+
+.wave-svg--front {
+  bottom: 0;
+  height: 8%;
+  animation: wave-drift 42s linear infinite reverse;
+  z-index: 2;
+}
+
+.wave-path--mid   { fill: ep.scene('tejo', 'wave-back'); opacity: 0.84; }
+.wave-path--front { fill: ep.scene('tejo', 'wave-front'); opacity: 0.9; }
+
+[data-theme="tejo"][data-mode="dark"] {
+  .wave-path--mid   { opacity: 0.68; }
+  .wave-path--front { opacity: 0.82; }
+}
+
+@keyframes wave-drift {
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(-12.5%, 12px, 0); }
+  50%  { transform: translate3d(-25%, 0, 0); }
+  75%  { transform: translate3d(-37.5%, 12px, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.sky-clouds {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+// Flat clouds, varied sizes and heights, spread across the whole sky
+.sky-cloud {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: auto;
+  z-index: 0;
+  height: clamp(48px, 7vh, 84px);
+  will-change: transform;
+  animation: cloud-drift linear infinite;
+}
+
+.sky-cloud--soft { opacity: 1; }
+
+// Covers the whole sky, alternating sizes (small/large) from top to bottom.
+// IMPORTANT: top% (vertical position) and the duration/delay pair (which sets the
+// horizontal position at the start) must come from TWO shuffles that are
+// independent of each other. If either one follows the cloud index order,
+// the on-screen position always grows (or shrinks) together with the other
+// variable and all clouds line up on a diagonal.
+.sky-cloud--1  { top: 39%; height: clamp(116px, 16.5vh, 188px); animation-duration: 125s; animation-delay: -48s; }
+.sky-cloud--2  { top: 8%;  height: clamp(96px, 14vh, 158px);    animation-duration: 161s; animation-delay: -120s; }
+.sky-cloud--3  { top: 56%; height: clamp(38px, 5.5vh, 62px);    animation-duration: 120s; animation-delay: -4s; }
+.sky-cloud--4  { top: 21%; height: clamp(100px, 14.5vh, 166px); animation-duration: 190s; animation-delay: -161s; }
+.sky-cloud--5  { top: 1%;  height: clamp(36px, 5vh, 60px);      animation-duration: 203s; animation-delay: -42s; }
+.sky-cloud--6  { top: 45%; height: clamp(102px, 14.5vh, 168px); animation-duration: 205s; animation-delay: -115s; }
+.sky-cloud--7  { top: 16%; height: clamp(112px, 16vh, 184px);   animation-duration: 200s; animation-delay: -189s; }
+.sky-cloud--8  { top: 62%; height: clamp(44px, 6vh, 74px);      animation-duration: 166s; animation-delay: -20s; }
+.sky-cloud--9  { top: 32%; height: clamp(42px, 6vh, 70px);      animation-duration: 122s; animation-delay: -80s; }
+.sky-cloud--10 { top: 9%;  height: clamp(44px, 6vh, 72px);      animation-duration: 179s; animation-delay: -54s; }
+.sky-cloud--11 { top: 51%; height: clamp(110px, 15.5vh, 180px); animation-duration: 153s; animation-delay: -2s; }
+.sky-cloud--12 { top: 25%; height: clamp(48px, 7vh, 82px);      animation-duration: 138s; animation-delay: -114s; }
+.sky-cloud--13 { top: 3%;  height: clamp(40px, 5.5vh, 66px);    animation-duration: 135s; animation-delay: -64s; }
+.sky-cloud--14 { top: 63%; height: clamp(106px, 15vh, 174px);   animation-duration: 192s; animation-delay: -21s; }
+.sky-cloud--15 { top: 38%; height: clamp(46px, 6.5vh, 78px);    animation-duration: 177s; animation-delay: -133s; }
+.sky-cloud--16 { top: 14%; height: clamp(104px, 15vh, 172px);   animation-duration: 151s; animation-delay: -44s; }
+.sky-cloud--17 { top: 50%; height: clamp(50px, 7vh, 84px);      animation-duration: 195s; animation-delay: -78s; }
+.sky-cloud--18 { top: 27%; height: clamp(108px, 15.5vh, 178px); animation-duration: 130s; animation-delay: -121s; }
+.sky-cloud--19 { top: 57%; height: clamp(98px, 14vh, 162px);    animation-duration: 140s; animation-delay: -27s; }
+.sky-cloud--20 { top: 19%; height: clamp(38px, 5.5vh, 64px);    animation-duration: 146s; animation-delay: -84s; }
+.sky-cloud--21 { top: 44%; height: clamp(34px, 5vh, 58px);      animation-duration: 185s; animation-delay: -124s; }
+.sky-cloud--22 { top: 33%; height: clamp(92px, 13.5vh, 152px);  animation-duration: 172s; animation-delay: -83s; }
+
+// On small screens the sky shares the text area (clouds are absolute over
+// the whole hero) — 22 clouds crossing the screen covered the title.
+// Only 2-3 remain, pinned to the bottom (same band as the scene, see .sr-scene),
+// so they never pass over the text above.
+@include ep.below('md') {
+  .sky-cloud { display: none; }
+
+  .sky-cloud--9,
+  .sky-cloud--12,
+  .sky-cloud--14 {
+    display: block;
+    top: auto;
+  }
+
+  .sky-cloud--9  { bottom: 300px; }
+  .sky-cloud--12 { bottom: 190px; }
+  .sky-cloud--14 { bottom: 70px; }
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(-40vw); }
+  to   { transform: translateX(120vw); }
+}
+
+.sr-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  pointer-events: none;
+
+  svg { width: 100%; height: 100%; }
+}
+
+.star {
+  fill: ep.scene('lighthouse', 'star');
+  opacity: var(--star-o, 0.6);
+  animation: star-twinkle 4.2s ease-in-out infinite;
+}
+
+.star--xs { --star-o: 0.45; }
+.star--sm { --star-o: 0.6; }
+.star--md { --star-o: 0.78; }
+.star--lg { --star-o: 0.9; }
+.star--xl { --star-o: 1; }
+
+.star:nth-child(2n)   { animation-duration: 5.4s; animation-delay: -1.3s; }
+.star:nth-child(3n)   { animation-duration: 6.8s; animation-delay: -2.7s; }
+.star:nth-child(5n)   { animation-duration: 3.6s; animation-delay: -0.9s; }
+.star:nth-child(7n)   { animation-duration: 7.9s; animation-delay: -4.1s; }
+.star:nth-child(11n)  { animation-duration: 4.8s; animation-delay: -3.2s; }
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: var(--star-o, 0.6); }
+  50%      { opacity: calc(var(--star-o, 0.6) * 0.35); }
+}
+
+[data-mode="dark"] .sr-stars { display: block; }
+
+// Occasional shooting stars in the night sky
+.sr-stars::before,
+.sr-stars::after {
+  content: '';
+  position: absolute;
+  top: 14%;
+  left: 8%;
+  width: clamp(90px, 12vw, 160px);
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border-radius: 2px;
+  opacity: 0;
+  transform: rotate(20deg);
+  animation: shooting-star 11s ease-in infinite;
+}
+
+.sr-stars::after {
+  top: 40%;
+  left: 30%;
+  animation-duration: 15s;
+  animation-delay: 6.5s;
+}
+
+@keyframes shooting-star {
+  0%   { opacity: 0; transform: translate3d(0, 0, 0) rotate(20deg); }
+  2%   { opacity: 0.9; }
+  9%   { opacity: 0; transform: translate3d(52vw, 20vh, 0) rotate(20deg); }
+  100% { opacity: 0; transform: translate3d(52vw, 20vh, 0) rotate(20deg); }
+}
+
+@keyframes sun-bob {
+  0%, 100% { transform: translate(0, 0px) scale(1); }
+  50%       { transform: translate(1px, -3px) scale(1.015); }
+}
+
+@keyframes tree-breeze-front {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-12px); }
+}
+
+@keyframes tree-breeze-back {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-svg,
+  .sky-cloud,
+  .star,
+  .windmill__rotor,
+  .forest-scene__trees--front,
+  .forest-scene__trees--back,
+  .sr-celestial-body,
+  .sr-sun,
+  .sr-moon-disk {
+    animation: none;
+  }
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 780px;
+  padding-top: ep.space('80');
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.hero__greeting {
+  @include ep.title('display');
+
+  color: ep.palette('heading');
+  margin-bottom: ep.space('24');
+}
+
+.hero__identity {
+  @include ep.title('l', 'semi-bold');
+
+  color: ep.palette('primary');
+  margin-bottom: ep.space('16');
+  max-width: 660px;
+}
+
+.hero__summary {
+  color: ep.palette('text-muted');
+  font-size: clamp(#{ep.step(0)}, 2.5vw, #{ep.step(1)});
+  font-weight: ep.weight('regular');
+  line-height: ep.leading('relaxed');
+  max-width: ep.layout('content-narrow');
+  margin-bottom: ep.space('40');
+}
+
+.hero__actions {
+  display: flex;
+  gap: ep.space('16');
+  flex-wrap: wrap;
+  margin-top: ep.space('4');
+}
+
+@include ep.below('xl') {
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    align-items: flex-start;
+    padding-block: ep.space('104') ep.space('64');
+  }
+
+  .hero__content {
+    max-width: min(38rem, 100%);
+    padding-top: ep.space('24');
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .hero__greeting {
+    margin-bottom: ep.space('20');
+  }
+
+  .hero__summary {
+    margin-bottom: ep.space('24');
+    max-width: 34rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .forest-scene,
+  .flowers-scene {
+    inset: 10% -12% -2% -12%;
+    width: 124%;
+    height: 94%;
+    opacity: 0.92;
+  }
+
+  .tejo-scene {
+    width: min(74vw, 720px);
+    right: 0;
+  }
+
+  .sr-scene {
+    top: auto;
+    height: min(48vh, 420px);
+  }
+
+  .sky-cloud { display: none; }
+
+  .sky-cloud--9,
+  .sky-cloud--12,
+  .sky-cloud--14,
+  .sky-cloud--20 {
+    display: block;
+    top: auto;
+  }
+
+  .sky-cloud--9  { bottom: 300px; }
+  .sky-cloud--12 { bottom: 215px; }
+  .sky-cloud--14 { bottom: 120px; }
+  .sky-cloud--20 { bottom: 40px; }
+
+}
+
+@include ep.below('md') {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    gap: ep.space('32');
+    padding-block: ep.space('96') 0;
+  }
+
+  .hero > .container {
+    grid-row: 1;
+    width: 100%;
+  }
+
+  // Keep the scene below the content regardless of text length or language.
+  .hero__shapes {
+    position: relative;
+    grid-row: 2;
+    height: clamp(#{ep.space('176')}, 64vw, #{ep.space('168') * 2});
+  }
+
+  .hero__content {
+    max-width: 100%;
+    padding-top: ep.space('12');
+  }
+
+  .hero__greeting {
+    font-size: clamp(#{ep.step(7)}, 10vw, #{ep.step(9)});
+  }
+
+  .hero__summary {
+    margin-bottom: ep.space('20');
+  }
+
+  [data-theme="flowers"][data-mode="light"] {
+    .hero__actions .btn--primary {
+      background: ep.palette('text-muted');
+    }
+
+    .hero__actions .btn--outline {
+      color: ep.palette('text-muted');
+    }
+  }
+
+  .forest-scene,
+  .flowers-scene {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .tejo-scene {
+    width: 100%;
+    height: 100%;
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+
+  .sr-scene {
+    height: 100%;
+  }
+
+  .sr-celestial {
+    top: ep.space('24');
+    right: ep.space('32');
+    width: ep.space('64');
+  }
+}

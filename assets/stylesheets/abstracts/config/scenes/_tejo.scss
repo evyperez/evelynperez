@@ -1,0 +1,27 @@
+@use 'sass:string';
+
+/// # Tejo scene
+/// Tagus riverside in Almada: Cristo Rei, bridge and waves (`.tejo-scene`).
+$colors: (
+  'light': (
+    'sky':        string.unquote('linear-gradient(180deg, #b3d3e4 0%, #c8deea 56%, #dce9ef 100%)'),
+    'hill':       #547E3C,
+    'statue':     #8b8281,
+    'bridge':     #aa5945,
+    'dock':       #8b8281,
+    'boat':       #650b17,
+    'wave-back':  #a8cadc,
+    'wave-front': #7fb0ca,
+  ),
+  'dark': (
+    'sky':         string.unquote('linear-gradient(180deg, #122737 0%, #173243 55%, #1a394c 100%)'),
+    'hill':        #1B3220,
+    'statue':      #f0ece2,
+    'bridge':      #C06428,
+    'bridge-glow': #ff8a3d, // bridge lights, night only
+    'dock':        #9A8870,
+    'boat':        #3a1a12,
+    'wave-back':   #335d79,
+    'wave-front':  #234c69,
+  ),
+);

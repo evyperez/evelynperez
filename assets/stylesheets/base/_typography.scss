@@ -1,0 +1,53 @@
+@use '../abstracts' as ep;
+
+// Gloock has a single weight and no italic: never fake bold/italic,
+// so headings keep the real typeface (Work Sans ships the real weights/italics).
+html { font-synthesis: none; }
+
+h1, h2, h3, h4 {
+  font-family: ep.font('display');
+  font-weight: ep.weight('bold');
+  line-height: ep.leading('tight');
+  letter-spacing: -0.02em;
+  color: ep.palette('heading');
+}
+
+p {
+  color: ep.palette('text-muted');
+  line-height: ep.leading('relaxed');
+}
+
+em {
+  font-style: italic;
+  color: ep.palette('secondary');
+}
+
+strong {
+  font-weight: ep.weight('semi-bold');
+}
+
+.section-header {
+  margin-bottom: clamp(ep.space('40'), 5vw, ep.space('64'));
+}
+
+.section-header__label {
+  font-family: ep.font('body');
+  font-size: ep.step(-2);
+  font-weight: ep.weight('medium');
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: ep.palette('text-muted');
+  margin-bottom: ep.space('12');
+}
+
+.section-header__title {
+  @include ep.title('2xl');
+
+  color: ep.palette('heading');
+  text-wrap: balance;
+
+  em {
+    font-style: italic;
+    color: ep.palette('secondary');
+  }
+}

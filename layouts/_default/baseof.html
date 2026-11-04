@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.LanguageCode | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {{ partial "head/seo.html" . }}
+
+  <link rel="preload" href="{{ "fonts/work-sans/work-sans-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ "fonts/gloock/gloock-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  {{- if .IsHome }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/css/glide.core.min.css">
+  {{- end }}
+  <link rel="stylesheet" href='{{ "css/main.css" | relURL }}?v={{ readFile "static/css/main.css" | sha256 }}'>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">{{ i18n "skipToContent" | default "Skip to content" }}</a>
+  {{ partial "nav.html" . }}
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ if or (eq .Type "blog") (eq .Type "projects") }}{{ partial "lightbox.html" . }}{{ end }}
+  {{- if .IsHome }}
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/glide.min.js"></script>
+  {{- end }}
+  {{ $js := resources.Get "scripts/main.js" | js.Build (dict "minify" true) | fingerprint }}
+  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+  {{ $doll := resources.Get "scripts/paper-doll.js" | js.Build (dict "minify" true) | fingerprint }}
+  <script src="{{ $doll.RelPermalink }}" integrity="{{ $doll.Data.Integrity }}" defer></script>
+  {{ $buddy := resources.Get "scripts/hidden-buddy.js" | js.Build (dict "minify" true) | fingerprint }}
+  <script src="{{ $buddy.RelPermalink }}" integrity="{{ $buddy.Data.Integrity }}" data-href="{{ "secret/" | relLangURL }}" data-text="{{ i18n "buddyWhisper" }}" data-label="{{ i18n "buddyLabel" }}" defer></script>
+</body>
+</html>
