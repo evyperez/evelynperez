@@ -719,11 +719,14 @@ $phone-scenes: (
   .sr-scene      { height: art-size('lighthouse'); }
 
   // The Tejo scene keeps its proportions ("meet"), so it grows by width.
-  // Shifted left so the statue and the start of the bridge stay in view.
+  // Aligned to the right with the end of the bridge cut off. The width stays
+  // between 114vw (it always fills the screen) and 128vw (the statue stays in view).
   .tejo-scene {
-    right: auto;
-    left: calc(var(--art-space) * -0.24);
-    width: art-size('tejo');
+    --tejo-width: clamp(114vw, #{art-size('tejo')}, 128vw);
+
+    right: calc(var(--tejo-width) * -0.12);
+    left: auto;
+    width: var(--tejo-width);
     opacity: 1;
     transform: none;
   }
