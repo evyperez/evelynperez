@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="article-page">
+  <div class="article-shell">
+    {{ partial "breadcrumbs.html" . }}
+    <header class="section-header">
+      <p class="section-header__label">{{ i18n "projectsLabel" }}</p>
+      <h1 class="section-header__title">{{ i18n "projectsTitle" }} <em>{{ i18n "projectsTitleHighlight" | lower }}</em></h1>
+    </header>
+    <div class="projects-grid">
+      {{ range .Pages.ByWeight }}{{ partial "project-card.html" (dict "page" . "level" 2) }}{{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

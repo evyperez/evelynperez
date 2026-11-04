@@ -1,0 +1,27 @@
+{{- $projects := (where site.RegularPages "Section" "projects").ByWeight }}
+<section id="projects">
+  <div class="container">
+    <div class="glide carousel carousel--cards" id="projects-glide">
+
+      <div class="projects__head">
+        <div class="section-header">
+          <p class="section-header__label">{{ i18n "projectsLabel" }}</p>
+          <h2 class="section-header__title">{{ i18n "projectsTitle" }} <em>{{ i18n "projectsTitleHighlight" | lower }}</em></h2>
+        </div>
+        <div class="carousel__arrows" data-glide-el="controls">
+          <button class="carousel__arrow carousel__arrow--filled" data-glide-dir="<" aria-label="{{ i18n "projectsPrev" }}">←</button>
+          <button class="carousel__arrow carousel__arrow--filled" data-glide-dir=">" aria-label="{{ i18n "projectsNext" }}">→</button>
+        </div>
+      </div>
+
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+          {{- range $projects }}
+          <li class="glide__slide">{{ partial "project-card.html" (dict "page" .) }}</li>
+          {{- end }}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>

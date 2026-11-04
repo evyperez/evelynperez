@@ -1,0 +1,94 @@
+{{ define "main" }}
+{{- $all := (where site.RegularPages "Section" "projects").ByWeight }}
+{{- $next := index $all 0 }}
+{{- $prev := index $all 0 }}
+{{- range $i, $p := $all }}{{ if eq $p.Permalink $.Permalink }}
+  {{- $next = index $all (mod (add $i 1) (len $all)) }}
+  {{- $prev = index $all (mod (add $i (sub (len $all) 1)) (len $all)) }}
+{{- end }}{{ end }}
+<article class="article-page project-page">
+  <div class="article-shell project-page__wrap">
+    <div class="project-page__text">
+      {{ partial "breadcrumbs.html" . }}
+
+      {{- /* Previous · Next. On small screens (or when the names don't fit)
+           the names hide and only the arrows remain; main.js toggles .is-compact. */}}
+      <nav class="project-nav" aria-label='{{ i18n "projectNav" }}' data-project-nav>
+        {{- if ne $prev.Permalink .Permalink }}
+        <a class="project-nav__link project-nav__link--prev" href="{{ $prev.RelPermalink }}" aria-label='{{ i18n "projectPrev" }}: {{ $prev.Title }}' title="{{ $prev.Title }}">
+          <span class="project-nav__arrow" aria-hidden="true">←</span><span class="project-nav__text">{{ $prev.Title }}</span>
+        </a>
+        {{- else }}<span></span>{{ end }}
+        {{- if ne $next.Permalink .Permalink }}
+        <a class="project-nav__link project-nav__link--next" href="{{ $next.RelPermalink }}" aria-label='{{ i18n "projectNext" }}: {{ $next.Title }}' title="{{ $next.Title }}">
+          <span class="project-nav__text">{{ $next.Title }}</span><span class="project-nav__arrow" aria-hidden="true">→</span>
+        </a>
+        {{- else }}<span></span>{{ end }}
+      </nav>
+
+      <header class="project-page__header">
+        <h1 class="project-page__title">{{ .Title }}</h1>
+        {{ with .Params.summary }}<p class="project-page__lead">{{ . }}</p>{{ end }}
+      </header>
+    </div>
+
+    {{ with .Params.image }}
+    <div class="project-page__media" style="--thumb-bg: {{ $.Params.thumbBg | default "var(--ep-highlight)" | safeCSS }}">
+      {{ partial "picture.html" (dict "src" . "srcDesktop" $.Params.imageDesktop "alt" $.Title "class" "project-page__img" "quality" 90) }}
+    </div>
+    {{ end }}
+
+    <div class="project-page__text">
+      <dl class="project-page__facts">
+        {{ with .Params.website }}
+        <div>
+          <dt>{{ i18n "projectVisit" }}</dt>
+          <dd><a href="{{ . }}" target="_blank" rel="noopener">{{ replaceRE `^https?://(www\.)?` "" . }} ↗</a></dd>
+        </div>
+        {{ end }}
+        {{ with .Params.year }}
+        <div>
+          <dt>{{ i18n "projectYear" }}</dt>
+          <dd>{{ . }}</dd>
+        </div>
+        {{ end }}
+        {{ with .Params.location }}
+        <div>
+          <dt>{{ i18n "projectLocation" }}</dt>
+          <dd>{{ . }}</dd>
+        </div>
+        {{ end }}
+        {{ with .Params.stack }}
+        <div class="project-page__facts-stack">
+          <dt>{{ i18n "projectStack" }}</dt>
+          <dd class="project-page__stack">{{ range . }}<span class="tag">{{ . }}</span>{{ end }}</dd>
+        </div>
+        {{ end }}
+      </dl>
+    </div>
+
+    <div class="article__body project-page__body">
+      {{ .Content }}
+    </div>
+
+    <div class="project-page__text">
+
+      {{- /* End of page: previous and next, highlighted. */}}
+      {{ if ne $next.Permalink .Permalink }}
+      <nav class="project-pager" aria-label='{{ i18n "projectPagerNav" }}'>
+        <div class="project-pager__row">
+          <a class="project-pager__link project-pager__link--prev" href="{{ $prev.RelPermalink }}">
+            <span class="project-pager__label">← {{ i18n "projectPrev" }}</span>
+            <span class="project-pager__title">{{ $prev.Title }}</span>
+          </a>
+          <a class="project-pager__link project-pager__link--next" href="{{ $next.RelPermalink }}">
+            <span class="project-pager__label">{{ i18n "projectNext" }} →</span>
+            <span class="project-pager__title">{{ $next.Title }}</span>
+          </a>
+        </div>
+      </nav>
+      {{ end }}
+    </div>
+  </div>
+</article>
+{{ end }}

@@ -1,0 +1,54 @@
+/// # Flowers
+/// Flower oranges and peaches.
+$palette: (
+  'light': (
+    // Backgrounds
+    'background':       #FFFAF3,
+    'background-alt':   #FCF0E0,
+    'card':             #FFFFFF,
+    'highlight':        #FCEEDD,
+
+    // Text
+    'text':             #2A1808,
+    'heading':          #3A220C,
+    'text-muted':       #A85419,
+
+    // Accent
+    'primary':          #A5521B, // >= 4.5:1 on every light background (WCAG 1.4.3)
+    'secondary':        #A95516, // >= 4.5:1 on every light background (WCAG 1.4.3)
+
+    // Lines
+    'border':           #F5C896,
+    'border-accent':    #F0A868,
+
+    // Theme button swatches
+    'swatch-1':         #B85C1E,
+    'swatch-2':         #D97A2E,
+    'swatch-3':         #F0A868,
+  ),
+  'dark': (
+    // Backgrounds
+    'background':       #160E06,
+    'background-alt':   #1F140A,
+    'card':             #2A1C10,
+    'highlight':        #241608,
+
+    // Text
+    'text':             #FFF6EC,
+    'heading':          #FFF3E4,
+    'text-muted':       #F0C89A,
+
+    // Accent
+    'primary':          #E8955A,
+    'secondary':        #F0A868,
+
+    // Lines
+    'border':           #E8AC6E,
+    'border-accent':    #8A5A2C,
+
+    // Theme button swatches
+    'swatch-1':         #E8955A,
+    'swatch-2':         #F0A868,
+    'swatch-3':         #F5C896,
+  ),
+);

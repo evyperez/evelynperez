@@ -1,0 +1,18 @@
+{{- /*
+  Breadcrumb: Home / … / current page. Receives the page.
+  Uses the page's ancestors (e.g. Home › Projects › TAP).
+  The projects section uses the translated name "breadcrumbProjects".
+*/ -}}
+{{- define "partials/breadcrumb-name" -}}
+  {{- if .IsHome }}{{ i18n "breadcrumbHome" }}
+  {{- else if and .IsSection (eq .Section "projects") }}{{ i18n "breadcrumbProjects" }}
+  {{- else }}{{ .LinkTitle }}{{ end -}}
+{{- end -}}
+<nav class="breadcrumbs" aria-label='{{ i18n "breadcrumbLabel" }}'>
+  <ol>
+    {{- range .Ancestors.Reverse }}
+    <li><a href="{{ .RelPermalink }}">{{ partial "breadcrumb-name" . }}</a></li>
+    {{- end }}
+    <li><span aria-current="page">{{ partial "breadcrumb-name" . }}</span></li>
+  </ol>
+</nav>

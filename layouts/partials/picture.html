@@ -1,0 +1,92 @@
+{{- /*
+  Responsive <picture>: generates WebP versions (with JPG/PNG fallback) at several widths,
+  so the browser picks the smallest one that fits. Phones download the small version.
+
+  Params: src (/images/file.jpg, .png or .webp), alt
+  Optional: class, loading, sizes, style, width, height, quality
+            srcDesktop: larger image only for screens from 40rem (640px) up;
+                        "src" is used on phones.
+
+  - Max generated width: 1600px (2x the ~780px text column, sharp on retina screens).
+  - Default "sizes": text column width. Cards pass their own.
+  - If the image is not in static/images (or is SVG/GIF), the file is used as is.
+*/ -}}
+{{- $src := .src -}}
+{{- $sizes := .sizes | default "(min-width: 52rem) 48.75rem, 100vw" -}}
+{{- $quality := .quality | default 78 -}}
+{{- $fallbackQuality := .quality | default 80 -}}
+{{- $img := "" -}}
+{{- if and (strings.HasPrefix $src "/images/") (findRE `(?i)\.(jpe?g|png|webp)$` $src) -}}
+  {{- $img = resources.Get (strings.TrimPrefix "/" $src) -}}
+{{- end -}}
+
+{{- if $img -}}
+  {{- $max := 1600 -}}
+  {{- $steps := slice 320 480 640 800 1200 1600 -}}
+  {{- $widths := slice -}}
+  {{- range $steps }}{{ if lt . $img.Width }}{{ $widths = $widths | append . }}{{ end }}{{ end -}}
+  {{- $widths = $widths | append (cond (gt $img.Width $max) $max $img.Width) -}}
+  {{- $fmt := "jpg" -}}
+  {{- if findRE `(?i)\.png$` $src }}{{ $fmt = "png" }}{{ end -}}
+  {{- if findRE `(?i)\.webp$` $src }}{{ $fmt = "webp" }}{{ end -}}
+
+  {{- $webp := slice -}}
+  {{- $fallback := slice -}}
+  {{- $largest := "" -}}
+  {{- range $widths -}}
+    {{- $w := $img.Resize (printf "%dx webp q%d" . $quality) -}}
+    {{- $keep := true -}}
+    {{- if eq $fmt "webp" -}}
+      {{- if eq . $img.Width -}}
+        {{- $w = $img -}}
+      {{- else -}}
+        {{- /* Do not offer a smaller WebP that weighs more than its source. */ -}}
+        {{- $keep = or (eq . $max) (lt (len $w.Content) (len $img.Content)) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $keep -}}
+      {{- $webp = $webp | append (printf "%s %dw" $w.RelPermalink .) -}}
+      {{- $f := $img -}}
+      {{- if eq $fmt "webp" -}}
+        {{- $f = $w -}}
+      {{- else if ne . $img.Width -}}
+        {{- $f = $img.Resize (printf "%dx %s q%d" . $fmt $fallbackQuality) -}}
+      {{- end -}}
+      {{- $fallback = $fallback | append (printf "%s %dw" $f.RelPermalink .) -}}
+      {{- $largest = $f -}}
+    {{- end -}}
+  {{- end -}}
+{{- $desk := "" -}}
+  {{- with .srcDesktop }}{{ if strings.HasPrefix . "/images/" }}{{ $desk = resources.Get (strings.TrimPrefix "/" .) }}{{ end }}{{ end -}}
+  {{- $deskWebp := slice -}}{{- $deskFallback := slice -}}
+  {{- with $desk -}}
+    {{- $dw := slice -}}
+    {{- range $steps }}{{ if lt . $desk.Width }}{{ $dw = $dw | append . }}{{ end }}{{ end -}}
+    {{- $dw = $dw | append (cond (gt $desk.Width $max) $max $desk.Width) -}}
+    {{- range $dw -}}
+      {{- $deskWebp = $deskWebp | append (printf "%s %dw" ($desk.Resize (printf "%dx webp q%d" . $quality)).RelPermalink .) -}}
+      {{- $df := $desk -}}
+      {{- if ne . $desk.Width }}{{ $df = $desk.Resize (printf "%dx jpg q%d" . $fallbackQuality) }}{{ end -}}
+      {{- $deskFallback = $deskFallback | append (printf "%s %dw" $df.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+<picture>
+  {{- if $deskWebp }}
+  <source media="(min-width: 40rem)" type="image/webp" srcset="{{ delimit $deskWebp ", " }}" sizes="{{ $sizes }}">
+  <source media="(min-width: 40rem)" srcset="{{ delimit $deskFallback ", " }}" sizes="{{ $sizes }}">
+  {{- end }}
+  <source type="image/webp" srcset="{{ delimit $webp ", " }}" sizes="{{ $sizes }}">
+  <img src="{{ $largest.RelPermalink }}" srcset="{{ delimit $fallback ", " }}" sizes="{{ $sizes }}"
+    alt="{{ .alt }}" width="{{ $largest.Width }}" height="{{ $largest.Height }}" decoding="async"
+    {{- with .class }} class="{{ . }}"{{ end }}
+    {{- with .loading }} loading="{{ . }}"{{ end }}
+    {{- with .style }} style="{{ . | safeCSS }}"{{ end }}>
+</picture>
+{{- else -}}
+<img src="{{ $src }}" alt="{{ .alt }}"
+  {{- with .class }} class="{{ . }}"{{ end }}
+  {{- with .loading }} loading="{{ . }}"{{ end }}
+  {{- with .width }} width="{{ . }}"{{ end }}
+  {{- with .height }} height="{{ . }}"{{ end }}
+  {{- with .style }} style="{{ . | safeCSS }}"{{ end }}>
+{{- end -}}

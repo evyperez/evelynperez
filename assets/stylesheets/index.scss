@@ -1,0 +1,8 @@
+@charset 'UTF-8';
+
+/// Entry point: only `@use` of the entries.
+@use 'entries/themes';
+@use 'entries/core';
+@use 'entries/components';
+@use 'entries/layout';
+@use 'entries/pages';

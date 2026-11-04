@@ -1,0 +1,54 @@
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-header__label">{{ i18n "aboutLabel" }}</p>
+      <h2 class="section-header__title">{{ i18n "aboutTitle" }} <em>{{ i18n "aboutTitleHighlight" | lower }}</em></h2>
+    </div>
+
+    <div class="about__layout">
+      <div class="about__text">
+        <p>{{ i18n "aboutIntro" }} <strong>{{ i18n "aboutRole" | lower }}</strong> {{ i18n "aboutP1" }}</p>
+        {{- $reprograma := `<a href="https://reprograma.com.br/" target="_blank" rel="noopener">{reprograma}</a>` }}
+        <p>{{ i18n "aboutP2" (dict "reprograma" $reprograma) | safeHTML }}</p>
+        <p>{{ i18n "aboutP3" }}</p>
+        <p>{{ i18n "aboutP4" }}</p>
+        <div class="about__illustration" aria-hidden="true">
+          {{ (resources.Get "illustrations/simple-branch.svg").Content | safeHTML }}
+        </div>
+      </div>
+
+      <div class="about__meta">
+        <div class="about__stat">
+          <p class="about__stat-label">{{ i18n "aboutLocationLabel" }}</p>
+          <p class="about__stat-value">
+            {{- if eq .Site.Language.Lang "en" -}}
+              Lisbon, Portugal
+            {{- else -}}
+              Lisboa, Portugal
+            {{- end -}}
+          </p>
+        </div>
+        <div class="about__stat">
+          <p class="about__stat-label">{{ i18n "aboutExperienceLabel" }}</p>
+          <p class="about__stat-value">{{ i18n "aboutExperienceDesign" }}<br>{{ i18n "aboutExperienceCode" }}</p>
+        </div>
+        <div class="about__stat">
+          <p class="about__stat-label">{{ i18n "aboutBackgroundLabel" }}</p>
+          <p class="about__stat-value">{{ i18n "aboutBackgroundValue" }}</p>
+        </div>
+        <div class="about__stat">
+          <p class="about__stat-label">{{ i18n "aboutCurrentLabel" }}</p>
+          <p class="about__stat-value">{{ i18n "aboutCurrentValue" }}</p>
+        </div>
+        <div class="about__stat">
+          <p class="about__stat-label">{{ i18n "aboutLanguagesLabel" }}</p>
+          <p class="about__stat-value">{{ i18n "aboutLanguagesValue" }}</p>
+        </div>
+        <div class="about__stat">
+          <p class="about__stat-label">{{ i18n "aboutCertsLabel" }}</p>
+          <p class="about__stat-value">W3C Web Accessibility<br>Google Cloud Fundamentals</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

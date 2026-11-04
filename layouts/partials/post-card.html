@@ -1,0 +1,16 @@
+{{- $thumbnail := .Params.thumbnail | default .Params.image -}}
+<article class="blog-card">
+  <a class="blog-card__thumb{{ if not $thumbnail }} blog-card__thumb--placeholder{{ end }}" href="{{ .Permalink }}" tabindex="-1" aria-hidden="true">
+    {{ if $thumbnail }}
+      {{ partial "picture.html" (dict "src" $thumbnail "width" (.Params.thumbnailWidth | default .Params.imageWidth) "height" (.Params.thumbnailHeight | default .Params.imageHeight) "alt" "" "loading" "lazy" "sizes" "(min-width: 1000px) 24rem, (min-width: 640px) 50vw, 100vw") }}
+    {{ else }}
+      {{ partial "blog-thumb-placeholder.html" (dict "id" (anchorize .Title)) }}
+    {{ end }}
+  </a>
+  <div class="blog-card__body">
+    <p class="blog-card__meta">{{ .Date.Format "02 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "blogMin" | lower }}</p>
+    <h3 class="blog-card__title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+    <p class="blog-card__desc">{{ .Summary | truncate 120 }}</p>
+    <a class="blog-card__link" href="{{ .Permalink }}" tabindex="-1" aria-hidden="true">{{ i18n "blogRead" }} →</a>
+  </div>
+</article>

@@ -1,0 +1,144 @@
+@use '../abstracts' as ep;
+
+// # Carousel
+//
+// Everything carousel-related (Glide): track, slides, arrows and bullets.
+// Glide's own classes (`glide__track`, `glide__slides`, `glide__bullet`,
+// `glide__arrow--disabled`) are kept because Glide's JS relies on them.
+//
+// Markup:
+//   <div class="glide carousel carousel--cards">            projects
+//   <div class="glide carousel carousel--equal-height">     testimonials
+//   <div class="carousel__arrows" data-glide-el="controls">
+//     <button class="carousel__arrow">…</button>              outline arrow
+//     <button class="carousel__arrow carousel__arrow--filled">…</button>
+//   <div class="carousel__controls">                         bullets + arrows row
+
+/// Round outline arrow. Shared with the project page navigation.
+@mixin round-arrow($size, $hover: true) {
+  width: $size;
+  height: $size;
+  border: 1.5px solid ep.palette('border-accent');
+  border-radius: 50%;
+  color: ep.palette('primary');
+
+  @if $hover {
+    &:hover {
+      background: ep.palette('primary');
+      border-color: ep.palette('primary');
+      color: ep.palette('text-on-primary');
+    }
+  }
+}
+
+// ── Track and slides ──
+
+// Cards: the track stays inside the container and cards take exactly its width.
+.carousel--cards {
+  .glide__track {
+    // Clip with a margin instead of overflow: hidden, so the card's hover
+    // shadow, lift and focus ring aren't cut. Padding would change the width
+    // Glide measures. The section needs `overflow-x: clip` (see _projects.scss).
+    overflow: visible;
+    clip-path: inset(ep.space('-8') ep.space('-8') ep.space('-28') ep.space('-8'));
+  }
+
+  // Glide's core CSS also hides overflow on the slide list.
+  .glide__slides { overflow: visible; }
+
+  .glide__slide {
+    height: auto;
+    display: flex;
+  }
+}
+
+// Slides stretch to the tallest one, so the controls don't jump.
+.carousel--equal-height {
+  .glide__slides { align-items: stretch; }
+  .glide__slide { height: auto; }
+}
+
+// ── Controls ──
+
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: ep.space('32');
+}
+
+.carousel__arrows {
+  display: flex;
+  gap: ep.space('8');
+}
+
+.carousel__arrow {
+  @include round-arrow(44px);
+
+  background: transparent;
+  font-size: ep.step(1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background ep.duration('fast') ease, border-color ep.duration('fast') ease;
+}
+
+.carousel__arrow--filled {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  background: ep.palette('button');
+  color: ep.palette('button-text');
+  font-size: ep.step(1);
+  line-height: ep.leading('none');
+  display: inline-flex;
+
+  &:hover {
+    background: ep.palette('button-hover');
+    color: ep.palette('button-text');
+  }
+
+
+  &.glide__arrow--disabled {
+    background: color-mix(in srgb, ep.palette('text-muted') 14%, transparent);
+    color: color-mix(in srgb, ep.palette('text-muted') 55%, transparent);
+    cursor: default;
+  }
+}
+
+// ── Bullets ──
+
+.glide__bullets {
+  display: flex;
+}
+
+// 24px hit area (WCAG 2.5.8), the visible dot is drawn by ::before.
+.glide__bullet {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: ep.palette('border-accent');
+    opacity: 0.4;
+    transition: opacity ep.duration('fast') ease, transform ep.duration('fast') ease;
+  }
+
+  &--active::before,
+  &:hover::before {
+    opacity: 1;
+    background: ep.palette('primary');
+    transform: scale(1.2);
+  }
+}

@@ -1,0 +1,60 @@
+@use 'sass:string';
+
+/// # Lighthouse scene
+/// Lighthouse, cottage, clouds, sun and stars (`.sr-scene`, `.sr-celestial`, `.sky-cloud`).
+$colors: (
+  'light': (
+    // Sky
+    'sky-top':        #EBCAD6,
+    'sky-bottom':     #F9D3A6,
+    'background':     string.unquote('color-mix(in srgb, var(--ep-lighthouse-sky-top) 78%, var(--ep-lighthouse-sky-bottom))'),
+    'cloud':          string.unquote('color-mix(in srgb, var(--ep-lighthouse-sky-top) 26%, #FFFFFF)'),
+    'cloud-soft':     string.unquote('color-mix(in srgb, var(--ep-lighthouse-sky-bottom) 26%, #FFFFFF)'),
+    'sun':            #F7E1A0,
+    'sun-ray':        #F0D9A2,
+    'moon':           #EEE8D8,
+    'star':           #FFFFFF,
+
+    // Ground
+    'grass':          #A9CB97,
+    'grass-shadow':   #9BBE84,
+
+    // Lighthouse
+    'tower-red':      #C15C42,
+    'tower-light':    #F7F2E9,
+    'tower-rail':     #4A3D34,
+    'tower-roof':     #B85440,
+    'tower-gallery':  #8A5138,
+    'tower-window':   #4A382E,
+    'lantern':        #F3DFA8,
+    'beam':           #FFE890,
+
+    // Cottage
+    'cottage':        #F1EADC,
+    'cottage-roof':   #C16A3C,
+    'cottage-door':   #3B382F,
+    'cottage-window': #A8C4D4,
+
+  ),
+  'dark': (
+    'background':     #141B36,
+    'sky-top':        #131C3A,
+    'sky-bottom':     #3A2050,
+    'cloud':          #3A4868,
+    'cloud-soft':     #4C5A7C,
+    'sun':            #F8D848,
+    'grass':          #243818,
+    'grass-shadow':   #182810,
+    'tower-red':      #C84840,
+    'tower-light':    #E8E0D8,
+    'tower-rail':     #1A1818,
+    'tower-roof':     #7A3028,
+    'tower-gallery':  #3A241C,
+    'tower-window':   #201814,
+    'lantern':        #FFE890,
+    'cottage':        #3A3228,
+    'cottage-roof':   #8A3A2A,
+    'cottage-door':   #1E1B16,
+    'cottage-window': #FFD870,
+  ),
+);

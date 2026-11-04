@@ -1,0 +1,20 @@
+{{- /*
+  Markdown images: ![Image description](/images/file.jpg "Optional caption")
+  An image alone on a line becomes a full-width <figure>; inside a paragraph it stays inline.
+*/ -}}
+{{- $src := .Destination -}}
+{{- $w := 0 }}{{ $h := 0 -}}
+{{- $file := printf "static%s" $src -}}
+{{- if and (strings.HasPrefix $src "/") (fileExists $file) -}}
+  {{- with imageConfig $file }}{{ $w = .Width }}{{ $h = .Height }}{{ end -}}
+{{- end -}}
+{{- if .IsBlock -}}
+<figure class="content-figure">
+  {{ partial "picture.html" (dict "src" $src "alt" .PlainText "class" "content-figure__img" "loading" "lazy" "width" $w "height" $h) }}
+  {{- with .Title }}
+  <figcaption class="content-figure__caption">{{ . }}</figcaption>
+  {{- end }}
+</figure>
+{{- else -}}
+<img src="{{ $src }}" alt="{{ .PlainText }}"{{ with $w }} width="{{ . }}"{{ end }}{{ with $h }} height="{{ . }}"{{ end }} loading="lazy">
+{{- end -}}

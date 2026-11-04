@@ -1,0 +1,54 @@
+/// # Tejo
+/// River water in Almada: river and reflection blues.
+$palette: (
+  'light': (
+    // Backgrounds
+    'background':       #F0F7FC,
+    'background-alt':   #DFF0F8,
+    'card':             #FFFFFF,
+    'highlight':        #D0EAF5,
+
+    // Text
+    'text':             #08121C,
+    'heading':          #0F2030,
+    'text-muted':       #3A5F70,
+
+    // Accent
+    'primary':          #1A4A6B,
+    'secondary':        #286B94, // >= 4.5:1 on every light background (WCAG 1.4.3)
+
+    // Lines
+    'border':           #A8D8EA,
+    'border-accent':    #5AAEC8,
+
+    // Theme button swatches
+    'swatch-1':         #1A4A6B,
+    'swatch-2':         #2E7AA8,
+    'swatch-3':         #A8D8EA,
+  ),
+  'dark': (
+    // Backgrounds
+    'background':       #080F18,
+    'background-alt':   #0F1E2E,
+    'card':             #152230,
+    'highlight':        #0A2030,
+
+    // Text
+    'text':             #E8F5FF,
+    'heading':          #D0E8F5,
+    'text-muted':       #88B8D0,
+
+    // Accent
+    'primary':          #5AAEC8,
+    'secondary':        #3A8FC8,
+
+    // Lines
+    'border':           #A8D8EA,
+    'border-accent':    #2A6A8A,
+
+    // Theme button swatches
+    'swatch-1':         #5AAEC8,
+    'swatch-2':         #3A8FC8,
+    'swatch-3':         #A8D8EA,
+  ),
+);

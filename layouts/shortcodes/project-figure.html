@@ -1,0 +1,4 @@
+<figure class="content-figure">
+  {{ partial "picture.html" (dict "src" (.Get "src") "srcDesktop" (.Get "desktop") "alt" (.Get "alt") "class" "content-figure__img" "loading" "lazy" "quality" 90) }}
+  {{ with .Get "caption" }}<figcaption class="content-figure__caption">{{ . }}</figcaption>{{ end }}
+</figure>

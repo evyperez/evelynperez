@@ -1,0 +1,54 @@
+/// # Lighthouse
+/// Sunrise with a lighthouse: terracotta, pink and sky blue.
+$palette: (
+  'light': (
+    // Backgrounds
+    'background':       #FDF5EE,
+    'background-alt':   #F5E2DC,
+    'card':             #FFFFFF,
+    'highlight':        #FAE8DC,
+
+    // Text
+    'text':             #2A0A10,
+    'heading':          #3A1015,
+    'text-muted':       #9A3A48,
+
+    // Accent
+    'primary':          #A8431F, // >= 4.5:1 on highlight/background (WCAG 1.4.3)
+    'secondary':        #B43751, // >= 4.5:1 on highlight/background (WCAG 1.4.3)
+
+    // Lines
+    'border':           #6A90C4,
+    'border-accent':    #E8987A,
+
+    // Theme button swatches
+    'swatch-1':         #C0405A,
+    'swatch-2':         #D45A30,
+    'swatch-3':         #6A90C4,
+  ),
+  'dark': (
+    // Backgrounds
+    'background':       #180A08,
+    'background-alt':   #280F0A,
+    'card':             #351510,
+    'highlight':        #2A0F10,
+
+    // Text
+    'text':             #FAF0EE,
+    'heading':          #F5E0E5,
+    'text-muted':       #C8A0A8,
+
+    // Accent
+    'primary':          #E8905A,
+    'secondary':        #E8809A,
+
+    // Lines
+    'border':           #90B8E0,
+    'border-accent':    #8A5A48,
+
+    // Theme button swatches
+    'swatch-1':         #E8809A,
+    'swatch-2':         #E8905A,
+    'swatch-3':         #90B8E0,
+  ),
+);

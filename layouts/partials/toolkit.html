@@ -1,0 +1,26 @@
+{{- $groups := slice
+  (dict "label" "toolkitProgramming" "items" "TypeScript, JavaScript")
+  (dict "label" "toolkitFrontend" "items" "Angular, AngularJS, React, Vue.js, Web Components, HTML, CSS, Sass, Storybook, Hugo")
+  (dict "label" "toolkitBackend" "items" "Node.js, NestJS, Express, Firebase")
+  (dict "label" "toolkitDesign" "items" "Figma, Adobe Creative Cloud")
+  (dict "label" "toolkitTesting" "items" "Jest, Playwright, WAVE, Lighthouse, BrowserStack")
+  (dict "label" "toolkitDelivery" "items" "Git, GitHub Actions, CircleCI, Jenkins, Docker, Netlify")
+  (dict "label" "toolkitCloud" "items" "Google Cloud, AWS, Azure")
+}}
+<section id="toolkit">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-header__label">{{ i18n "toolkitLabel" }}</p>
+      <h2 class="section-header__title">{{ i18n "toolkitTitle" }} <em>{{ i18n "toolkitTitleHighlight" | lower }}</em></h2>
+    </div>
+
+    <dl class="toolkit-list">
+      {{- range $groups }}
+      <div class="toolkit-list__row">
+        <dt class="toolkit-list__label">{{ i18n .label }}</dt>
+        <dd class="toolkit-list__items">{{ .items }}</dd>
+      </div>
+      {{- end }}
+    </dl>
+  </div>
+</section>

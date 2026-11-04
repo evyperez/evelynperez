@@ -1,0 +1,6 @@
+User-agent: *
+{{ range site.Sites -}}
+Disallow: {{ .Home.RelPermalink }}secret/
+{{ end -}}
+
+Sitemap: {{ "sitemap.xml" | absURL }}

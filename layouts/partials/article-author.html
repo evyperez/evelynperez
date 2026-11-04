@@ -1,0 +1,15 @@
+{{ $author := .Params.author | default .Site.Params.author }}
+<aside class="article-author" aria-label="{{ i18n "blogAuthorAria" }}">
+  <div class="article-author__avatar" aria-hidden="true">
+    <img src="{{ "images/author/evelyn-112.webp" | relURL }}" srcset="{{ "images/author/evelyn-56.webp" | relURL }} 56w, {{ "images/author/evelyn-112.webp" | relURL }} 112w, {{ "images/author/evelyn-224.webp" | relURL }} 224w" sizes="56px" width="56" height="56" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="article-author__content">
+    <p class="article-author__label">{{ i18n "blogAuthorLabel" }}</p>
+    <p class="article-author__name">{{ $author }}</p>
+    <p class="article-author__bio">{{ i18n "blogAuthorBio" }}</p>
+    <div class="article-author__links">
+      <a href="{{ .Site.Params.social.linkedin }}" class="article-author__link" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="{{ .Site.Params.social.github }}" class="article-author__link" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</aside>

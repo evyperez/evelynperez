@@ -1,0 +1,6 @@
+{{- /* Markdown links: external ones open in a new tab with rel="noopener"; internal ones stay in the same tab. */ -}}
+{{- $external := strings.HasPrefix .Destination "http" -}}
+<a href="{{ .Destination | safeURL }}"
+  {{- with .Title }} title="{{ . }}"{{ end }}
+  {{- if $external }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- /* no trailing whitespace */ -}}

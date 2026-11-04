@@ -1,0 +1,59 @@
+<nav id="nav" aria-label="{{ i18n "navAria" }}">
+  <a href="{{ "/" | relLangURL }}" class="nav__logo">Evelyn Perez</a>
+
+  <ul class="nav__links" id="nav-links">
+    <li><a href="{{ "/" | relLangURL }}#about">{{ i18n "navAbout" }}</a></li>
+    <li><a href="{{ "/" | relLangURL }}#projects">{{ i18n "navWork" }}</a></li>
+    <li><a href="{{ "/" | relLangURL }}#blog">{{ i18n "navBlog" }}</a></li>
+    <li><a href="/evelyn-perez-resume.pdf" target="_blank" rel="noopener">{{ i18n "navResume" }}</a></li>
+    <li><a href="{{ "/" | relLangURL }}#contact">{{ i18n "navContact" }}</a></li>
+  </ul>
+
+  <div class="nav__actions">
+    <button class="nav__toggle-btn nav__theme-dots" id="theme-btn" aria-label="{{ i18n "navThemeAria" }}" title="{{ i18n "navThemeAria" }}">
+      <svg width="22" height="8" viewBox="0 0 22 8" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="4"  cy="4" r="3.5" fill="var(--ep-swatch-1)"/>
+        <circle cx="11" cy="4" r="3.5" fill="var(--ep-swatch-2)"/>
+        <circle cx="18" cy="4" r="3.5" fill="var(--ep-swatch-3)"/>
+      </svg>
+    </button>
+    <button class="nav__toggle-btn" id="dark-btn" aria-label="{{ i18n "navDarkAria" }}" title="{{ i18n "navDarkAria" }}">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-switcher__btn" id="lang-btn" aria-haspopup="menu" aria-expanded="false" aria-label="{{ i18n "navLangAria" }}">
+        <span>{{ .Language.Params.shortName }}</span> ▾
+      </button>
+      <div class="lang-switcher__dropdown" id="lang-dropdown" role="menu">
+        {{ $page := . }}
+        {{ $currentLang := .Language.Lang }}
+        {{ range $.Site.Languages }}
+          {{ $lang := .Lang }}
+          {{ $isActive := eq $currentLang $lang }}
+          {{/* fallback: the language's home */}}
+          {{ $href := "/" }}
+          {{ if ne $lang "en" }}{{ $href = printf "/%s/" $lang }}{{ end }}
+          {{/* if the current page has a translation in that language, go straight to it */}}
+          {{ range $page.AllTranslations }}
+            {{ if eq .Language.Lang $lang }}{{ $href = .RelPermalink }}{{ end }}
+          {{ end }}
+          <a class='lang-switcher__option{{ if $isActive }} active{{ end }}' href="{{ $href }}" role="menuitem">
+            {{ .Params.flag }} {{ .LanguageName }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <button class="nav__hamburger" id="nav-hamburger" aria-label="{{ i18n "navHamburgerAria" }}" aria-expanded="false" aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>

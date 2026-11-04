@@ -1,0 +1,76 @@
+@use '../abstracts' as ep;
+
+#about {
+  background: ep.palette('card');
+}
+
+.about__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(ep.space('40'), 6vw, ep.space('80'));
+  align-items: start;
+
+  @include ep.from('lg') {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+.about__text {
+  p {
+    font-size: ep.step(1);
+    color: ep.palette('text-muted');
+    line-height: ep.leading('relaxed');
+    margin-bottom: ep.space('20');
+  }
+
+  a {
+    color: ep.palette('primary');
+    font-weight: ep.weight('medium');
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+
+    &:hover { color: ep.palette('secondary'); }
+  }
+}
+
+.about__illustration {
+  margin-top: ep.space('32');
+  color: ep.palette('text-muted');
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+// ── Sidebar meta ───────────────────────────
+
+.about__meta {
+  display: flex;
+  flex-direction: column;
+  gap: ep.space('24');
+  position: sticky;
+  top: ep.space('96');
+}
+
+.about__stat {
+  border-top: 1px solid ep.palette('divider');
+  padding-top: ep.space('16');
+}
+
+.about__stat-label {
+  font-size: ep.step(-3);
+  font-weight: ep.weight('medium');
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: ep.palette('text-muted');
+  margin-bottom: ep.space('4');
+}
+
+.about__stat-value {
+  font-size: ep.step(-1);
+  font-weight: ep.weight('medium');
+  color: ep.palette('heading');
+}

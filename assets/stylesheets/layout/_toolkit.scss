@@ -1,0 +1,38 @@
+@use '../abstracts' as ep;
+
+#toolkit {
+  background: ep.palette('highlight');
+  padding-block: clamp(ep.space('56'), 7vw, ep.space('88'));
+
+  .section-header__label { color: ep.palette('secondary'); }
+}
+
+// Editorial list: category on the left, tools on the right.
+.toolkit-list {
+  border-top: 1px solid ep.palette('border');
+}
+
+.toolkit-list__row {
+  display: grid;
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+  gap: ep.space('8') ep.space('32');
+  align-items: baseline;
+  padding-block: ep.space('18');
+  border-bottom: 1px solid ep.palette('border');
+
+  @include ep.below('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.toolkit-list__label {
+  @include ep.title('m', 'regular');
+
+  color: ep.palette('heading');
+}
+
+.toolkit-list__items {
+  font-size: ep.step(0);
+  line-height: ep.leading('normal');
+  color: ep.palette('text-muted');
+}

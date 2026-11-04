@@ -1,0 +1,11 @@
+/// Breakpoints → use with `ep.below('md')` and `ep.from('md')`.
+///
+/// `below` is `max-width: <value>`, `from` is `min-width: <value> + 1px`,
+/// so the two never overlap.
+$breakpoints: (
+  'xs': 480px,
+  'sm': 580px,
+  'md': 720px,
+  'lg': 900px,
+  'xl': 1024px,
+);

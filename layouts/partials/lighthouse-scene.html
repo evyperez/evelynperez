@@ -1,0 +1,59 @@
+<svg class="sr-scene" viewBox="0 0 1200 780" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <clipPath id="sr-lh-taper-clip">
+      <path d="M-25 -190 L25 -190 L42 0 L-42 0 Z"/>
+    </clipPath>
+    <linearGradient id="sr-lh-beam-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop class="sr-lh-beam-stop" offset="0%" stop-opacity="0.45"/>
+      <stop class="sr-lh-beam-stop" offset="100%" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <path class="sr-grass" d="M820 780 C820 756 920 724 1020 718 C1120 712 1170 724 1200 736 L1200 780 Z"/>
+  <path class="sr-grass-shadow" d="M1020 718 C1100 714 1155 724 1200 736 L1200 780 L1040 780 C1010 762 990 748 1020 718 Z"/>
+
+  <g class="sr-lh" transform="translate(1050 718)">
+    <g clip-path="url(#sr-lh-taper-clip)">
+      <rect class="sr-lh-stripe sr-lh-stripe--light" x="-46" y="-194" width="92" height="198"/>
+      <rect class="sr-lh-stripe sr-lh-stripe--red"   x="-46" y="-130" width="92" height="50"/>
+      <rect class="sr-lh-shade" x="0" y="-194" width="46" height="198"/>
+    </g>
+
+    <path class="sr-lh-window" d="M-7 -20 L-7 -42 A7 7 0 0 1 7 -42 L7 -20 Z"/>
+    <rect class="sr-lh-sill" x="-9" y="-20" width="18" height="3" rx="1"/>
+    <rect class="sr-lh-window" x="-6" y="-176" width="12" height="22"/>
+    <rect class="sr-lh-sill" x="-8" y="-154" width="16" height="3" rx="1"/>
+
+    <rect class="sr-lh-gallery" x="-32" y="-200" width="64" height="12"/>
+    <rect class="sr-lh-lantern" x="-27" y="-246" width="54" height="46"/>
+    <rect class="sr-lh-shade" x="0" y="-246" width="27" height="46"/>
+    <g class="sr-lh-rail" fill="none" stroke-width="2" stroke-linecap="round">
+      <path d="M-13.5 -200 V-246"/><path d="M0 -200 V-246"/><path d="M13.5 -200 V-246"/>
+      <path d="M-27 -223 H27"/>
+    </g>
+    <rect class="sr-lh-gallery" x="-32" y="-252" width="64" height="6"/>
+
+    <path class="sr-lh-roof" d="M-34 -252 L0 -252 L0 -302 Z"/>
+    <path class="sr-lh-roof-shade" d="M0 -252 L34 -252 L0 -302 Z"/>
+    <path class="sr-lh-rail" stroke-width="2" stroke-linecap="round" d="M0 -302 V-314"/>
+    <circle class="sr-lh-finial" cx="0" cy="-316" r="3"/>
+
+    <path class="sr-lh-beam" d="M0 -223 L-170 140 L0 140 Z" fill="url(#sr-lh-beam-grad)"/>
+    <circle class="sr-lh-glow" cx="0" cy="-223" r="16"/>
+  </g>
+
+  <g class="sr-cottage">
+    <rect class="sr-cottage-chimney" x="1150" y="646" width="11" height="22" rx="1.5"/>
+    <rect class="sr-cottage-wall" x="1086" y="674" width="82" height="52" rx="1.5"/>
+    <path class="sr-cottage-roof" d="M1076 678 L1127 642 L1178 678 Z"/>
+    <rect class="sr-cottage-door" x="1121" y="698" width="17" height="28" rx="1.5"/>
+    <g class="sr-cottage-window">
+      <rect class="sr-cottage-win-frame" x="1092" y="684" width="26" height="26" rx="2"/>
+      <rect class="sr-cottage-glass" x="1095" y="687" width="20" height="20" rx="1"/>
+      <g class="sr-cottage-mullion" fill="none" stroke-width="1.8">
+        <path d="M1105 687 V707"/>
+        <path d="M1095 697 H1115"/>
+      </g>
+    </g>
+  </g>
+</svg>

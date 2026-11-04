@@ -9,6 +9,9 @@ resources/
 # Generated stylesheets
 static/css/main.css
 
+# Local notes and image prompts (not part of the site)
+output/
+
 # Test output and logs
 testResults/
 coverage/

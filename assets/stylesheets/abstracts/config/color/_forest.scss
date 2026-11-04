@@ -1,0 +1,77 @@
+@use 'sass:string';
+
+/// # Forest
+/// Default palette: forest greens. Defines every color; the other palettes only what changes.
+$palette: (
+  'light': (
+    // Backgrounds
+    'background':       #F2F8F4, // page background
+    'background-alt':   #E7F1EB, // alternate sections, footer, tags
+    'card':             #FFFFFF, // cards and white sections
+    'highlight':        #DCEEE6, // soft highlight: tags, pagination, sections
+
+    // Text
+    'text':             #132520, // default text
+    'text-body':        string.unquote('color-mix(in srgb, var(--ep-text) 82%, var(--ep-background))'), // article text
+    'heading':          #163B33, // headings, navigation
+    'text-muted':       #335E52, // secondary text, captions
+
+    // Accent
+    'primary':          #1F5C4D, // main color: links, labels, buttons
+    'secondary':        #2E7460, // >= 4.5:1 on every light background (WCAG 1.4.3) · second color: emphasis, links, hover
+
+    // Lines
+    'border':           #A7D6C3, // tags, inputs, lists
+    'border-accent':    #7EC2A8, // outline buttons, carousel arrows
+
+    // Code
+    'code-bg':          string.unquote('var(--ep-text)'),
+    'code-text':        string.unquote('var(--ep-background-alt)'),
+    'code-inline-bg':   string.unquote('var(--ep-background-alt)'),
+    'code-inline-text': string.unquote('var(--ep-primary)'),
+
+    // Shadow
+    'shadow':           (0 1px 4px rgba(22, 59, 51, 0.12), 0 4px 16px rgba(22, 59, 51, 0.06)),
+    'shadow-hover':     0 8px 32px rgba(22, 59, 51, 0.14),
+
+    // Theme button swatches
+    'swatch-1':         #1F5C4D,
+    'swatch-2':         #4E9C84,
+    'swatch-3':         #A8D7BF,
+  ),
+  'dark': (
+    // Backgrounds
+    'background':       #091511,
+    'background-alt':   #0F1D18,
+    'card':             #1E2F20,
+    'highlight':        #12261F,
+
+    // Text
+    'text':             #F0F5F0,
+    'heading':          #EEF8F1,
+    'text-muted':       #B2D6C4,
+
+    // Accent
+    'primary':          #79C0A0,
+    'secondary':        #9AD4B8,
+
+    // Lines
+    'border':           #9FD7BF,
+    'border-accent':    #4E8670,
+
+    // Code
+    'code-bg':          string.unquote('var(--ep-card)'),
+    'code-text':        string.unquote('var(--ep-text-muted)'),
+    'code-inline-bg':   string.unquote('var(--ep-highlight)'),
+    'code-inline-text': string.unquote('var(--ep-secondary)'),
+
+    // Shadow
+    'shadow':           (0 1px 4px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.25)),
+    'shadow-hover':     0 8px 32px rgba(0, 0, 0, 0.5),
+
+    // Theme button swatches
+    'swatch-1':         #79C0A0,
+    'swatch-2':         #9AD4B8,
+    'swatch-3':         #C5E8D8,
+  ),
+);
