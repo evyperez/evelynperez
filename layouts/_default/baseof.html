@@ -30,5 +30,6 @@
   <script src="{{ $doll.RelPermalink }}" integrity="{{ $doll.Data.Integrity }}" defer></script>
   {{ $buddy := resources.Get "scripts/hidden-buddy.js" | js.Build (dict "minify" true) | fingerprint }}
   <script src="{{ $buddy.RelPermalink }}" integrity="{{ $buddy.Data.Integrity }}" data-href="{{ "secret/" | relLangURL }}" data-text="{{ i18n "buddyWhisper" }}" data-label="{{ i18n "buddyLabel" }}" defer></script>
+  {{ partial "analytics.html" . }}
 </body>
 </html>

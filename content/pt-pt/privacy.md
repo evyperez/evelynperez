@@ -6,7 +6,7 @@ type: privacy
 
 ## Navegação neste site
 
-Este site não utiliza cookies, analytics, píxeis de publicidade nem outras tecnologias de rastreamento. Não é recolhida informação pessoal apenas por visitar o site.
+Este site não utiliza cookies, píxeis de publicidade nem rastreamento entre sites. Para saber quantas pessoas o visitam, utiliza o [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/), que conta visualizações de página sem cookies e sem identificar quem visita. São registados apenas dados gerais, como a página visitada, o site de origem, o país e o tipo de navegador e dispositivo. Para mais informações, consulte a [Política de Privacidade da Cloudflare](https://www.cloudflare.com/privacypolicy/).
 
 ## Formulário de contacto
 
