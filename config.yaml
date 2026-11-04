@@ -64,6 +64,8 @@ languages:
 
 params:
   author: 'Evelyn Perez'
+  # Cloudflare Web Analytics site token (cookieless). Empty turns it off.
+  cloudflareAnalyticsToken: ''
   description: "Frontend engineer and designer in Lisbon. Design systems, component libraries and accessible interfaces in Angular, React and web components."
   # Default share image (1200×630). Put the file in static/images/ and uncomment:
   # image: '/images/og-default.jpg'

@@ -6,7 +6,7 @@ type: privacy
 
 ## Browsing this website
 
-This website does not use cookies, analytics, advertising pixels, or other tracking technologies. No personal information is collected simply by visiting it.
+This website does not use cookies, advertising pixels, or tracking across other websites. To know how many people visit, it uses [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/), which counts page views without cookies and without identifying visitors. It records only general data, such as the page visited, the referring site, the country, and the type of browser and device. For more information, see [Cloudflare's Privacy Policy](https://www.cloudflare.com/privacypolicy/).
 
 ## Contact form
 
