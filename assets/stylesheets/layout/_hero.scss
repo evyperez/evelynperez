@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../abstracts' as ep;
 
 .hero {
@@ -103,16 +104,6 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-// Mobile: the section now grows with the text (see .hero above).
-// Without this limit, "slice" kept enlarging the lighthouse to fill
-// the whole height. Pins the illustration to a band at the bottom.
-@include ep.below('md') {
-  .sr-scene {
-    top: auto;
-    height: min(58vh, 480px);
-  }
 }
 
 .sr-grass         { fill: ep.scene('lighthouse', 'grass'); }
@@ -295,15 +286,6 @@
   width: min(64vw, 920px);
   height: auto;
   pointer-events: none;
-}
-
-@include ep.below('md') {
-  .tejo-scene {
-    width: 120vw;
-    right: 0;
-    left: auto;
-    transform: none;
-  }
 }
 
 .tejo-scene__hill-front { fill: ep.scene('tejo', 'hill'); }
@@ -654,16 +636,28 @@
 }
 
 @include ep.below('md') {
-  // Phones: the scene is anchored to the bottom and is taller than the space
-  // kept free below the text. Its top is open sky, so it can sit behind the
-  // text, while the foreground stays clear of the buttons.
+  // Phones: each scene is anchored to the bottom and drawn at about 80% of its
+  // desktop size. Its top is open sky, so it can sit behind the text, and the
+  // hero keeps $art-space free below the buttons for the foreground.
   // The theme's sky fills the whole hero, so there is no band above the scene.
-  $art-height: clamp(28rem, 135vw, 40rem);
-  $art-space: clamp(17rem, 78vw, 26rem);
+  $art-space: (
+    'forest': clamp(16rem, 70vw, 24rem),
+    'tejo': clamp(17rem, 76vw, 26rem),
+    'lighthouse': clamp(23rem, 108vw, 33rem),
+    'flowers': clamp(21rem, 98vw, 30rem),
+  );
 
   .hero {
+    --art-space: #{map.get($art-space, 'forest')};
+
     min-height: 0;
-    padding-block: ep.space('96') $art-space;
+    padding-block: ep.space('96') var(--art-space);
+  }
+
+  @each $theme, $space in $art-space {
+    [data-theme="#{$theme}"] .hero {
+      --art-space: #{$space};
+    }
   }
 
   .hero__content {
@@ -696,18 +690,30 @@
 
   .forest-scene,
   .flowers-scene,
-  .tejo-scene,
   .sr-scene {
     inset: auto 0 0;
     width: 100%;
-    height: $art-height;
+    opacity: 1;
+    transform: none;
+  }
+
+  .forest-scene  { height: clamp(40rem, 173vw, 52rem); }
+  .flowers-scene { height: clamp(40rem, 180vw, 52rem); }
+  .sr-scene      { height: clamp(42rem, 190vw, 54rem); }
+
+  // The Tejo scene keeps its proportions ("meet"), so it grows by width.
+  // Shifted left so the statue and the start of the bridge stay in view.
+  .tejo-scene {
+    right: auto;
+    left: -18vw;
+    width: clamp(38rem, 178vw, 52rem);
     opacity: 1;
     transform: none;
   }
 
   .sr-celestial {
     top: auto;
-    bottom: calc(#{$art-space} - #{ep.space('64')});
+    bottom: calc(var(--art-space) - #{ep.space('64')});
     right: ep.space('32');
     width: ep.space('64');
   }
