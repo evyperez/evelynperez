@@ -16,7 +16,7 @@ Los envíos del formulario son almacenados por Netlify. Para más información, 
 
 ## Conservación y opciones
 
-La información de contacto se conserva solo durante el tiempo necesario para responder a un mensaje o continuar una conversación iniciada por ti. Puedes solicitar acceso, corrección o eliminación de la información enviada escribiendo a [hello@evelyn-perez.com](mailto:hello@evelyn-perez.com).
+La información de contacto se conserva solo durante el tiempo necesario para responder a un mensaje o continuar una conversación iniciada por ti. Puedes solicitar acceso, corrección o eliminación de la información enviada escribiendo a [evelyn@evelyn-perez.com](mailto:evelyn@evelyn-perez.com).
 
 ## Enlaces externos
 
