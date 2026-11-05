@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{- $prices := site.Params.services }}
+{{- $services := slice
+  (dict "name" "servicesAuditName" "text" "servicesAuditText" "note" "servicesFrom" "price" (i18n "servicesPrice" (dict "price" $prices.auditFrom)))
+  (dict "name" "servicesFixesName" "text" "servicesFixesText" "note" "servicesQuoteNote" "price" (i18n "servicesQuote"))
+  (dict "name" "servicesMonthlyName" "text" "servicesMonthlyText" "note" "servicesFrom" "price" (i18n "servicesPricePerMonth" (dict "price" $prices.monthlyFrom)))
+  (dict "name" "servicesConsultingName" "text" "servicesConsultingText" "note" "servicesPerHourNote" "price" (i18n "servicesPrice" (dict "price" $prices.hourly)))
+}}
+<div class="article-page">
+  <div class="article-shell services-page">
+    {{ partial "breadcrumbs.html" . }}
+    <header class="section-header">
+      <p class="section-header__label">{{ i18n "servicesLabel" }}</p>
+      <h1 class="section-header__title">{{ i18n "servicesTitle" }} <em>{{ i18n "servicesTitleHighlight" | lower }}</em></h1>
+      <p class="services-page__intro">{{ i18n "servicesIntro" }}</p>
+    </header>
+
+    <ul class="services-list" aria-label="{{ i18n "servicesListAria" }}">
+      {{- range $services }}
+      <li class="services-list__item">
+        <h2 class="services-list__name">{{ i18n .name }}</h2>
+        <p class="services-list__text">{{ i18n .text }}</p>
+        <p class="services-list__price"><span class="services-list__note">{{ i18n .note }}</span> {{ .price }}</p>
+      </li>
+      {{- end }}
+    </ul>
+
+    <aside class="services-check" aria-labelledby="services-check-title">
+      <div>
+        <h2 class="services-check__title" id="services-check-title">{{ i18n "servicesCheckTitle" }}</h2>
+        <p class="services-check__text">{{ i18n "servicesCheckText" }}</p>
+      </div>
+      <div class="services-check__actions">
+        <a class="btn btn--primary" href="{{ "/" | relLangURL }}#contact">{{ i18n "servicesCheckCta" }}</a>
+        {{- with site.Params.calendar }}
+        <a class="btn btn--outline" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "servicesCallCta" }}</a>
+        {{- end }}
+      </div>
+    </aside>
+  </div>
+</div>
+{{ end }}

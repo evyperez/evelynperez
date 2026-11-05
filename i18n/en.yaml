@@ -2,6 +2,8 @@
   translation: About
 - id: navWork
   translation: Work
+- id: navServices
+  translation: "Services"
 - id: navBlog
   translation: Blog
 - id: navResume
@@ -267,6 +269,54 @@
   translation: "Year"
 - id: projectLocation
   translation: "Location"
+
+# Services page
+- id: servicesLabel
+  translation: "Services"
+- id: servicesTitle
+  translation: "Websites built for"
+- id: servicesTitleHighlight
+  translation: "Everyone"
+- id: servicesIntro
+  translation: "I help small and medium-sized companies find and fix accessibility barriers and technical SEO issues. I work per project or with a monthly package of hours."
+- id: servicesListAria
+  translation: "Services and prices"
+- id: servicesAuditName
+  translation: "Audit"
+- id: servicesAuditText
+  translation: "Manual and automated review of your site against WCAG 2.2, with a prioritised report and a call to explain what to fix first."
+- id: servicesFixesName
+  translation: "Fixes"
+- id: servicesFixesText
+  translation: "I fix the code and components, or guide your team through it, with testing before and after."
+- id: servicesMonthlyName
+  translation: "Monthly support"
+- id: servicesMonthlyText
+  translation: "Hours reserved every month to review new pages, support your team and keep the site accessible."
+- id: servicesConsultingName
+  translation: "Consulting"
+- id: servicesConsultingText
+  translation: "One-off sessions to answer questions, review a design or guide your team on accessibility and design systems."
+- id: servicesFrom
+  translation: "From"
+- id: servicesQuote
+  translation: "On request"
+- id: servicesQuoteNote
+  translation: "Quote"
+- id: servicesPerHourNote
+  translation: "Per hour"
+- id: servicesPrice
+  translation: "€{{ .price }}"
+- id: servicesPricePerMonth
+  translation: "€{{ .price }}/month"
+- id: servicesCheckTitle
+  translation: "Not sure where to start?"
+- id: servicesCheckText
+  translation: "Ask for a free check and I’ll send you the five issues that affect your visitors the most."
+- id: servicesCheckCta
+  translation: "Ask for a free check"
+- id: servicesCallCta
+  translation: "Book a call"
 
 # Secret page
 - id: secretPage

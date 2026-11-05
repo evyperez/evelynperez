@@ -75,6 +75,11 @@ params:
   image: '/images/og-default.jpg'
   email: 'evelyn@evelyn-perez.com'
   calendar: 'https://cal.com/evelyn-perez'
+  # Starting prices in euros shown on the services page.
+  services:
+    auditFrom: 900
+    monthlyFrom: 550
+    hourly: 65
   location: 'Lisbon, Portugal'
   social:
     github: 'https://github.com/evyperez'
