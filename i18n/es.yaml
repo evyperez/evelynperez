@@ -2,6 +2,8 @@
   translation: Sobre mí
 - id: navWork
   translation: Trabajo
+- id: navServices
+  translation: "Servicios"
 - id: navBlog
   translation: Blog
 - id: navResume
@@ -267,6 +269,54 @@
   translation: "Año"
 - id: projectLocation
   translation: "Ubicación"
+
+# Services page
+- id: servicesLabel
+  translation: "Servicios"
+- id: servicesTitle
+  translation: "Sitios web accesibles para"
+- id: servicesTitleHighlight
+  translation: "Todos"
+- id: servicesIntro
+  translation: "Ayudo a empresas pequeñas y medianas a encontrar y corregir barreras de accesibilidad y problemas técnicos de SEO. Trabajo por proyecto o con un paquete de horas al mes."
+- id: servicesListAria
+  translation: "Servicios y precios"
+- id: servicesAuditName
+  translation: "Auditoría"
+- id: servicesAuditText
+  translation: "Revisión manual y automática del sitio según WCAG 2.2, con un informe priorizado y una llamada para explicar qué corregir primero."
+- id: servicesFixesName
+  translation: "Correcciones"
+- id: servicesFixesText
+  translation: "Corrijo el código y los componentes, o guío a tu equipo, con pruebas antes y después."
+- id: servicesMonthlyName
+  translation: "Acompañamiento mensual"
+- id: servicesMonthlyText
+  translation: "Horas reservadas cada mes para revisar nuevas páginas, apoyar a tu equipo y mantener el sitio accesible."
+- id: servicesConsultingName
+  translation: "Consultoría"
+- id: servicesConsultingText
+  translation: "Sesiones puntuales para resolver dudas, revisar un diseño u orientar a tu equipo en accesibilidad y design systems."
+- id: servicesFrom
+  translation: "Desde"
+- id: servicesQuote
+  translation: "Bajo consulta"
+- id: servicesQuoteNote
+  translation: "Presupuesto"
+- id: servicesPerHourNote
+  translation: "Por hora"
+- id: servicesPrice
+  translation: "{{ .price }} €"
+- id: servicesPricePerMonth
+  translation: "{{ .price }} €/mes"
+- id: servicesCheckTitle
+  translation: "¿No sabes por dónde empezar?"
+- id: servicesCheckText
+  translation: "Pide una revisión gratuita y te envío los cinco problemas que más afectan a quien visita tu sitio."
+- id: servicesCheckCta
+  translation: "Pedir revisión gratuita"
+- id: servicesCallCta
+  translation: "Reservar una llamada"
 
 # Secret page
 - id: secretPage

@@ -4,6 +4,9 @@
   <ul class="nav__links" id="nav-links">
     <li><a href="{{ "/" | relLangURL }}#about">{{ i18n "navAbout" }}</a></li>
     <li><a href="{{ "/" | relLangURL }}#projects">{{ i18n "navWork" }}</a></li>
+    {{- with site.GetPage "/services" }}
+    <li><a href="{{ .RelPermalink }}">{{ i18n "navServices" }}</a></li>
+    {{- end }}
     <li><a href="{{ "/" | relLangURL }}#blog">{{ i18n "navBlog" }}</a></li>
     <li><a href="/evelyn-perez-resume.pdf" target="_blank" rel="noopener">{{ i18n "navResume" }}</a></li>
     <li><a href="{{ "/" | relLangURL }}#contact">{{ i18n "navContact" }}</a></li>

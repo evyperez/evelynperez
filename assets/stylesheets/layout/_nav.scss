@@ -66,8 +66,10 @@
     transform: translateX(-50%);
     flex-direction: row;
     align-items: center;
-    gap: ep.space('32');
+    // Narrower gap on small desktops, so all links fit on one line.
+    gap: clamp(#{ep.space('20')}, 2.4vw, #{ep.space('32')});
     padding: 0;
+    white-space: nowrap;
     background: transparent;
     backdrop-filter: none;
     box-shadow: none;
