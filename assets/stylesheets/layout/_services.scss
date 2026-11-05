@@ -1,0 +1,105 @@
+@use '../abstracts' as ep;
+
+// Services page: same shell as the projects list, with a narrower measure.
+.services-page {
+  max-width: calc(#{ep.layout('measure')} + #{ep.layout('container-padding')} * 2);
+}
+
+.services-page__intro {
+  max-width: ep.layout('measure-narrow');
+  margin-top: ep.space('16');
+  font-size: ep.step(1);
+  line-height: ep.leading('relaxed');
+  color: ep.palette('text-body');
+}
+
+// Editorial list, like the toolkit: name and text on the left, price on the right.
+.services-list {
+  margin: 0 0 clamp(ep.space('40'), 6vw, ep.space('64'));
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid ep.palette('border');
+}
+
+.services-list__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: ep.space('4') ep.space('32');
+  padding-block: ep.space('24');
+  border-bottom: 1px solid ep.palette('border');
+
+  @include ep.below('sm') {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.services-list__name {
+  @include ep.title('l', 'regular');
+
+  color: ep.palette('heading');
+}
+
+.services-list__text {
+  max-width: ep.layout('measure-narrow');
+  line-height: ep.leading('normal');
+  color: ep.palette('text-body');
+}
+
+.services-list__price {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-weight: ep.weight('semi-bold');
+  color: ep.palette('heading');
+  text-align: right;
+  white-space: nowrap;
+
+  @include ep.below('sm') {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: ep.space('8');
+    text-align: left;
+  }
+}
+
+.services-list__note {
+  display: block;
+  font-size: ep.step(-2);
+  font-weight: ep.weight('regular');
+  color: ep.palette('text-muted');
+}
+
+.services-check {
+  display: flex;
+  flex-wrap: wrap;
+  gap: ep.space('24') ep.space('32');
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(ep.space('24'), 4vw, ep.space('40'));
+  border-radius: ep.radius('m');
+  background: ep.palette('highlight');
+}
+
+.services-check__title {
+  @include ep.title('l', 'regular');
+
+  margin-bottom: ep.space('8');
+  color: ep.palette('heading');
+}
+
+.services-check__text {
+  max-width: ep.layout('content-narrow');
+  line-height: ep.leading('normal');
+  color: ep.palette('text-body');
+}
+
+.services-check__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: ep.space('12');
+
+  .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
