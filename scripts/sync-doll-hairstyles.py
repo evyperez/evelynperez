@@ -6,7 +6,7 @@ import re
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'design/penteados/modelo-evelyn'
+SOURCE = ROOT / 'assets/artwork/hairstyles/evelyn-model'
 NS = '{http://www.w3.org/2000/svg}'
 ET.register_namespace('', NS[1:-1])
 
@@ -35,12 +35,12 @@ def inline_styles(root):
 
 artwork = {}
 for key, filename in [
-    ('loose', '01-cabelo-solto.svg'),
-    ('bun', '02-coque.svg'),
-    ('headband', '03-cabelo-com-tiara.svg'),
-    ('pigtails', '04-maria-chiquinha.svg'),
-    ('long-waves', '05-ondulado.svg'),
-    ('double-bun', '06-dois-coquinhos.svg'),
+    ('loose', '01-loose.svg'),
+    ('bun', '02-bun.svg'),
+    ('headband', '03-headband.svg'),
+    ('pigtails', '04-pigtails.svg'),
+    ('long-waves', '05-long-waves.svg'),
+    ('double-bun', '06-double-bun.svg'),
 ]:
     root = ET.parse(SOURCE / filename).getroot()
     if key == 'double-bun':
