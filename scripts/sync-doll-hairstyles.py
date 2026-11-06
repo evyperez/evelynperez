@@ -54,7 +54,7 @@ for key, filename in [
             (back if child.get('id') in ('b', 'c') else front).append(deepcopy(child))
         artwork[key] = {'back': markup(back), 'front': markup(front)}
     else:
-        back = root.find('.//*[@id="cabelo-atras"]')
+        back = root.find('.//*[@id="hair-back"]')
         outer = next(child for child in root if child.tag == NS + 'g')
         front = next(child for child in outer if child is not back)
         defs = root.find(NS + 'defs')
