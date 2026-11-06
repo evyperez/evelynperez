@@ -26,11 +26,11 @@
   var css =
     ".hb{position:fixed;bottom:0;" + side + ":28px;z-index:9999;width:72px;height:72px;text-decoration:none;outline:none}" +
     ".hb-clip{position:absolute;inset:0;overflow:hidden}" +
-    ".hb-sprite{position:absolute;left:0;bottom:0;width:72px;transform:translateY(55%);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}" +
+    ".hb-sprite{position:absolute;left:0;bottom:0;width:72px;transform:translateY(28%);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}" +
     ".hb-sprite svg{display:block;width:100%;height:auto}" +
     ".hb:hover .hb-sprite,.hb:focus-visible .hb-sprite{transform:translateY(6%)}" +
     ".hb.hop .hb-sprite{animation:hb-hop .6s cubic-bezier(.34,1.56,.64,1)}" +
-    "@keyframes hb-hop{40%{transform:translateY(35%)}}" +
+    "@keyframes hb-hop{40%{transform:translateY(14%)}}" +
     ".hb-eyes{transform-box:fill-box;transform-origin:center;transition:transform .08s}" +
     ".hb-eyes.shut{transform:scaleY(.15)}" +
     ".hb-say{position:absolute;bottom:82px;" + side + ":0;white-space:nowrap;font:500 13px/1.3 var(--ep-font-body,system-ui,sans-serif);" +
@@ -62,7 +62,7 @@
       setTimeout(blink, 2500 + Math.random() * 3500);
     })();
 
-    // a little hop every so often, so she's hidden… but not *that* hidden
+    // a little hop every so often, so she gets noticed
     setInterval(function () {
       if (a.matches(":hover")) return;
       a.classList.remove("hop"); void a.offsetWidth; a.classList.add("hop");
