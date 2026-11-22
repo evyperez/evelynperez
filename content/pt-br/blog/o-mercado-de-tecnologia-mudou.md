@@ -51,7 +51,7 @@ Tenho percebido muitas mudanças na área de design. Saber usar Figma já não �
 
 Também tenho visto vagas de Design Engineer, que misturam design com programação, principalmente para criar interfaces e componentes de Design Systems.
 
-E com a IA, essa divisão está ficando ainda menor. Hoje, um designer consegue criar interfaces funcionais mesmo sem saber muito de programação. Assim como um desenvolvedor consegue criar interfaces visualmente boas, mesmo sem ter muita experiência em design.
+E com a IA, essa divisão está ficando ainda menor. Hoje, um designer consegue criar interfaces funcionais mesmo sem saber muito de programação. Da mesma forma, um desenvolvedor consegue criar interfaces visualmente boas, mesmo sem ter muita experiência em design.
 
 A única questão é que, para mim, a IA ainda não consegue substituir a criatividade humana. Mas está cada vez melhor e já consegue criar boas interfaces, principalmente quando a pessoa sabe direcioná-la.
 

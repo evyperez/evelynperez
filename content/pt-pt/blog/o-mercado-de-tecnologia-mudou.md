@@ -37,7 +37,7 @@ Durante muito tempo, as entrevistas de algoritmos eram bastante populares. Que p
 
 Geralmente, o processo começava com uma conversa com os Recursos Humanos, depois vinha um teste técnico, uma entrevista de algoritmos, uma conversa com o responsável da equipa e, por fim, uma entrevista final.
 
-Hoje, tenho visto processos de recrutamento muito mais longos, entrevistas com IA e várias fases de avaliação. E com tantas pessoas a candidatarem-se à mesma vaga, principalmente às oportunidades remotas, conseguir chegar a uma entrevista já se tornou um desafio.
+Hoje, tenho visto processos de recrutamento muito mais longos, entrevistas com IA e várias fases de avaliação. E com tantas pessoas a candidatarem-se à mesma vaga, sobretudo quando se trata de trabalho remoto, conseguir chegar a uma entrevista já se tornou um desafio.
 
 Também tenho reparado que as *soft skills* estão a ganhar mais importância. Saber comunicar, explicar as decisões e trabalhar bem com outras pessoas pode fazer tanta diferença como saber programar.
 
